@@ -19,12 +19,15 @@
 
 % Paragraph 1:
 % Briefly introduce the topic and its significance or application.
-\textit{[Write Paragraph 1 here in your own words.]}
+\section{Research Question}
+To what extent is the experimentally measured dependence of gate leakage current density on oxide thickness consistent with the prediction of a one-dimensional rectangular potential barrier model in MOSFET?
+\section{Background and Significance}
+Quantum tunneling is a phenomenon that when E<V0, electrons may occur in the other side of  potential barrier because wavefunction will not instantly become to 0 in the barrier. MOSFETs are the electronic switch in chips. The silicon channel is controlled the gate through oxide layer. The oxide thickness tox, can be modeled as the barrier width a in the one-dimensional well in quantum physics. Thus, the thinner the oxide layer is, the shorter distance wavefunction decay will be in the barrier. This may increase the tunneling probability and gate leakage, which might lead to standby power consumption, keeping heating, even lower information reliability.
 
 % Paragraph 2:
 % State the problem, model, data source, comparison method, and resources.
-\textit{[Write Paragraph 2 here in your own words.]}
-
+\section{Problem and Method}
+This study will investigate how gate leakage current density Jg changes with oxide thickness under fixed gate voltage of 1.5V, and evaluate the extent to which this relationship is consistent with the one-dimensional rectangular potential barrier model prediction for tunneling probability T. By using one-dimensional rectangular potential barrier model and adopting the data in NMOSFET experiment from \cite{}, where VG is fixed at 1.5V and JG varied with oxide thickness. Graph digitizer and MATLAB are used to extract tox and JG and calculate T. Graph lnT-tox and lnJG-tox will be plotted separately. 
 % IEEE references can be enabled after references.bib is created:
 % \bibliographystyle{IEEEtran}
 % \bibliography{references}
