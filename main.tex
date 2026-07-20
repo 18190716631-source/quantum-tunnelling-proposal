@@ -2,7 +2,11 @@
 
 % Formatting required by the proposal guideline
 \usepackage[margin=1in]{geometry}
-\usepackage{newtxtext,newtxmath} % Times-style text and mathematics
+\IfFileExists{newtxtext.sty}{
+    \usepackage{newtxtext,newtxmath} % Times-style text and mathematics
+}{
+    \usepackage{mathptmx}            % Fallback Times-style package
+}
 \usepackage{setspace}
 \usepackage{cite}                % Compressed numerical citations
 \usepackage[hidelinks]{hyperref}
@@ -14,22 +18,15 @@
 \begin{document}
 
 \begin{center}
-    {\large\bfseries [Working Title]}
+    {\large\bfseries Testing a One-Dimensional Potential-Barrier Model Using MOSFET Gate-Leakage Data}
 \end{center}
 
-% Paragraph 1:
-% Briefly introduce the topic and its significance or application.
-\section{Research Question}
-To what extent is the experimentally measured dependence of gate leakage current density on oxide thickness consistent with the prediction of a one-dimensional rectangular potential barrier model in MOSFET?
-\section{Background and Significance}
-Quantum tunneling is a phenomenon that when E<V0, electrons may occur in the other side of  potential barrier because wavefunction will not instantly become to 0 in the barrier. MOSFETs are the electronic switch in chips. The silicon channel is controlled the gate through oxide layer. The oxide thickness tox, can be modeled as the barrier width a in the one-dimensional well in quantum physics. Thus, the thinner the oxide layer is, the shorter distance wavefunction decay will be in the barrier. This may increase the tunneling probability and gate leakage, which might lead to standby power consumption, keeping heating, even lower information reliability.
+Quantum tunnelling occurs when a particle with energy \(E<V_0\) has a nonzero probability of being found beyond a finite potential barrier, because its wavefunction decays exponentially rather than becoming immediately zero within the barrier \cite{townsend2010}. MOSFETs are electronic switches used in integrated circuits; in each device, the gate controls the conductivity of a silicon channel through an electric field across a thin oxide layer. In a simplified one-dimensional model, the oxide thickness \(t_{\mathrm{ox}}\) corresponds to the barrier width \(a\). If the particle energy and barrier height are held constant, reducing \(t_{\mathrm{ox}}\) shortens the physical distance over which the wavefunction decays. The wavefunction therefore has a larger amplitude at the far side of the oxide, increasing the tunnelling probability and gate leakage. Greater gate leakage can increase standby power consumption and heat dissipation, and can reduce device reliability \cite{green2001review}.
 
-% Paragraph 2:
-% State the problem, model, data source, comparison method, and resources.
-\section{Problem and Method}
-This study will investigate how gate leakage current density Jg changes with oxide thickness under fixed gate voltage of 1.5V, and evaluate the extent to which this relationship is consistent with the one-dimensional rectangular potential barrier model prediction for tunneling probability T. By using one-dimensional rectangular potential barrier model and adopting the data in NMOSFET experiment from \cite{}, where VG is fixed at 1.5V and JG varied with oxide thickness. Graph digitizer and MATLAB are used to extract tox and JG and calculate T. Graph lnT-tox and lnJG-tox will be plotted separately. 
-% IEEE references can be enabled after references.bib is created:
-% \bibliographystyle{IEEEtran}
-% \bibliography{references}
+The research question is: To what extent is the experimentally measured dependence of gate leakage current density on oxide thickness consistent with the prediction of a one-dimensional rectangular potential barrier model in MOSFETs? This study will investigate how \(J_G\) changes with \(t_{\mathrm{ox}}\) at a fixed gate voltage of \(V_G=1.5~\mathrm{V}\). In the theoretical model, \(t_{\mathrm{ox}}\) will be treated as the barrier width, while the particle energy and barrier height will be held constant, and the tunnelling probability \(T\) will be calculated in MATLAB. Experimental \(J_G\)-against-\(t_{\mathrm{ox}}\) data will be extracted from Green et al.'s published plot of NMOSFET measurements with transmission-electron-microscopy-measured oxide thicknesses \cite{green1999limits,green2001review}. A graph digitizer will be used to extract the data. The relationships \(\ln T\) against \(t_{\mathrm{ox}}\) and \(\ln J_G\) against \(t_{\mathrm{ox}}\) will be plotted separately, and their slopes and overall trends will be compared. Because \(T\) is a dimensionless probability whereas \(J_G\) is a current density, the comparison will test whether their dependence on thickness is consistent rather than whether their numerical values are equal.
+
+\newpage
+\IfFileExists{IEEEtran.bst}{\bibliographystyle{IEEEtran}}{\bibliographystyle{unsrt}}
+\bibliography{references}
 
 \end{document}
