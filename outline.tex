@@ -1,0 +1,202 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\IfFileExists{newtxtext.sty}{
+    \usepackage{newtxtext,newtxmath}
+}{
+    \usepackage{mathptmx}
+}
+\usepackage{enumitem}
+\usepackage{cite}
+\usepackage[hidelinks]{hyperref}
+
+\setlist[itemize]{leftmargin=0.28in,itemsep=3pt,topsep=3pt}
+\setlist[itemize,2]{leftmargin=0.28in,itemsep=2pt}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{center}
+    {\large\bfseries Research Project Outline}\\[4pt]
+    {\bfseries Testing a One-Dimensional Potential-Barrier Model Using MOSFET Gate-Leakage Data}
+\end{center}
+
+\textbf{Research question:} To what extent is the experimentally measured dependence of gate leakage current density on oxide thickness consistent with the prediction of a one-dimensional rectangular potential-barrier model in MOSFETs?
+
+\section*{1. Introduction}
+\begin{itemize}
+    \item Introduce quantum tunneling as the nonzero probability that a particle with \(E<V_0\) passes through a finite potential barrier \cite{townsend2010}.
+    \item Explain why tunneling becomes important when the barrier is extremely thin: the wavefunction has a shorter physical distance over which to decay.
+    \item Introduce the MOSFET as a real application:
+    \begin{itemize}
+        \item The gate controls the conductivity of the silicon channel through an electric field across the gate oxide.
+        \item The oxide is an insulating layer, but electrons may tunnel through it when it becomes sufficiently thin.
+        \item Gate leakage contributes to power consumption, heating, and reliability problems in scaled devices \cite{green2001review}.
+    \end{itemize}
+    \item State the research question and explain that the project will test whether a simple quantum model captures the measured \emph{thickness dependence}, rather than claiming that tunneling probability and current density are the same quantity.
+\end{itemize}
+
+\section*{2. Theoretical Background: One-Dimensional Rectangular Barrier}
+\begin{itemize}
+    \item Define the model:
+    \begin{itemize}
+        \item Barrier width \(a\), barrier height \(V_0\), and incident electron energy \(E<V_0\).
+        \item Three spatial regions: before, inside, and after the barrier.
+    \end{itemize}
+    \item Set up the time-independent Schr\"odinger equation in each region \cite{townsend2010}.
+    \item Describe the expected wavefunctions:
+    \begin{itemize}
+        \item Incident and reflected traveling waves before the barrier.
+        \item Exponentially decaying and growing terms inside the barrier.
+        \item A transmitted traveling wave after the barrier.
+    \end{itemize}
+    \item Apply continuity of the wavefunction and its first derivative at both boundaries.
+    \item Derive or present the exact transmission probability \(T\), followed by the high/wide-barrier approximation.
+    \item Identify the model's main prediction:
+    \begin{itemize}
+        \item \(T\) decreases approximately exponentially as \(a\) increases.
+        \item Therefore, a plot of \(\ln T\) against \(a\) should be approximately linear with a negative slope.
+    \end{itemize}
+    \item State the assumptions: one-dimensional motion, a rectangular barrier, constant \(E\), constant \(V_0\), constant effective mass, and no defects or scattering within the oxide.
+\end{itemize}
+
+\section*{3. Connecting the Model to a MOSFET}
+\begin{itemize}
+    \item Map the theoretical quantities to the physical device:
+    \begin{itemize}
+        \item Barrier width \(a \longleftrightarrow\) oxide thickness \(t_{\mathrm{ox}}\).
+        \item Barrier-energy difference \(V_0-E \longleftrightarrow\) an effective energy barrier for an electron entering the oxide.
+        \item Transmission probability \(T \longleftrightarrow\) one factor contributing to gate leakage.
+    \end{itemize}
+    \item Explain the difference between the compared dependent variables:
+    \begin{itemize}
+        \item \(T\) is a dimensionless probability for an electron.
+        \item \(J_G\) is a measured current per unit area and also depends on the number and energy distribution of electrons supplied at the interface.
+        \item The investigation will therefore compare slopes, linearity, and normalized trends, not the numerical values of \(T\) and \(J_G\).
+    \end{itemize}
+    \item Explain why the rectangular barrier is only a first approximation:
+    \begin{itemize}
+        \item An applied electric field tilts the oxide barrier, making it closer to a trapezoidal barrier \cite{simmons1963,green2001review}.
+        \item At fixed \(V_G\), changing \(t_{\mathrm{ox}}\) also changes the approximate oxide electric field, so thickness is not the only physical factor changing.
+        \item Published MOS tunneling models also account for band bending, electron supply, barrier height, and effective mass \cite{depas1995}.
+    \end{itemize}
+\end{itemize}
+
+\section*{4. Experimental Data Source}
+\begin{itemize}
+    \item Use the published NMOSF data from Green et al. \cite{green1999limits}.
+    \item Independent variable: oxide thickness \(t_{\mathrm{ox}}\), measured using transmission electron microscopy.
+    \item Experimental dependent variable: gate leakage current density \(J_G\) at a fixed gate voltage of \(1.5~\mathrm{V}\).
+    \item Extract the plotted coordinates using a graph digitizer:
+    \begin{itemize}
+        \item Calibrate both axes and confirm whether either original axis is logarithmic.
+        \item Record the extracted \(t_{\mathrm{ox}}\) and \(J_G\) values in a data table.
+        \item Repeat selected points to estimate digitization uncertainty.
+    \end{itemize}
+    \item Record limitations of the secondary dataset: finite graph resolution, uncertainty in thickness measurements, possible device-to-device variation, and incomplete access to the authors' raw numerical data.
+\end{itemize}
+
+\section*{5. Theoretical Calculation}
+\begin{itemize}
+    \item Use MATLAB to calculate \(T\) over the same oxide-thickness range as the experimental data.
+    \item Select and justify values for the effective electron mass and effective barrier energy using semiconductor-tunneling literature \cite{depas1995,green2001review}.
+    \item Keep the model parameters constant while changing only the barrier width, so that the rectangular-barrier prediction is clearly defined.
+    \item Check units carefully by converting all energies to joules and all thicknesses to meters inside the calculation.
+    \item Test the sensitivity of the theoretical slope to plausible literature values of the barrier energy and effective mass instead of relying on only one parameter set.
+\end{itemize}
+
+\section*{6. Data Processing and Planned Comparison}
+\begin{itemize}
+    \item Produce separate raw-scale plots of:
+    \begin{itemize}
+        \item Theoretical \(T\) against \(t_{\mathrm{ox}}\).
+        \item Experimental \(J_G\) against \(t_{\mathrm{ox}}\).
+    \end{itemize}
+    \item Produce the main comparison plots:
+    \begin{itemize}
+        \item \(\ln T\) against \(t_{\mathrm{ox}}\).
+        \item \(\ln J_G\) against \(t_{\mathrm{ox}}\).
+    \end{itemize}
+    \item Apply linear regression to both logarithmic relationships and record:
+    \begin{itemize}
+        \item Slope in \(\mathrm{nm}^{-1}\).
+        \item Intercept.
+        \item \(R^2\) as a measure of linearity.
+        \item Residual pattern.
+    \end{itemize}
+    \item Normalize both quantities to a common reference thickness if a direct visual comparison of curve shape is needed.
+    \item Define agreement before interpreting the results:
+    \begin{itemize}
+        \item Qualitative agreement: both quantities decrease approximately exponentially with thickness.
+        \item Quantitative agreement: their logarithmic slopes, including reasonable uncertainty or sensitivity ranges, are similar.
+        \item Partial agreement: the model predicts the general trend but not the measured decay rate or residual pattern.
+    \end{itemize}
+\end{itemize}
+
+\section*{7. Planned Presentation of Results}
+\begin{itemize}
+    \item Table of digitized experimental data.
+    \item Table of theoretical \(T\) values calculated at matching thicknesses.
+    \item Raw-scale and logarithmic graphs with regression equations.
+    \item Summary table comparing slope, \(R^2\), and residual behavior.
+    \item No conclusion will be assumed in advance; the extent of agreement will be determined from these comparisons.
+\end{itemize}
+
+\section*{8. Discussion}
+\begin{itemize}
+    \item Determine whether the model reproduces the experimental exponential thickness dependence.
+    \item Interpret the level of agreement:
+    \begin{itemize}
+        \item Similar logarithmic slopes would support the rectangular-barrier approximation over the selected range.
+        \item Similar direction but different slopes would mean that the model is qualitatively useful but quantitatively incomplete.
+        \item Curvature or systematic residuals would indicate that a constant rectangular barrier does not fully describe the device.
+    \end{itemize}
+    \item Discuss possible physical explanations for deviations without claiming that any single cause is proven:
+    \begin{itemize}
+        \item Barrier tilting caused by the oxide electric field.
+        \item Changes in electron supply and band bending.
+        \item Uncertain effective mass or barrier height.
+        \item Oxide defects, interface effects, or a transition between tunneling regimes.
+    \end{itemize}
+    \item Separate evidence of model limitations from uncertainty introduced by graph digitization and the published measurements.
+\end{itemize}
+
+\section*{9. Evaluation and Improvements}
+\begin{itemize}
+    \item Strengths:
+    \begin{itemize}
+        \item A simple model gives a clear, testable prediction.
+        \item The comparison uses published device measurements with microscopy-based oxide thicknesses.
+        \item The MATLAB calculation and digitized dataset can be reproduced and checked.
+    \end{itemize}
+    \item Limitations and corresponding improvements:
+    \begin{itemize}
+        \item Rectangular barrier assumption \(\rightarrow\) extend the model to a trapezoidal barrier using a WKB approximation.
+        \item Comparison of \(T\) with \(J_G\) \(\rightarrow\) use a fuller current-density model that includes electron supply.
+        \item One fixed gate voltage \(\rightarrow\) compare several gate voltages to separate thickness and electric-field effects.
+        \item Digitized published graph \(\rightarrow\) obtain raw numerical data or a higher-resolution figure.
+        \item Uncertain physical parameters \(\rightarrow\) conduct sensitivity analysis and propagate parameter uncertainty.
+    \end{itemize}
+\end{itemize}
+
+\section*{10. Conclusion}
+\begin{itemize}
+    \item Answer the research question using both qualitative and quantitative evidence.
+    \item State the thickness range over which the model is supported, if the data allow such a range to be identified.
+    \item Explain what the model captures and which real-device effects it omits.
+    \item Relate the final finding back to the physical challenge of gate-oxide scaling.
+\end{itemize}
+
+\section*{11. Appendices}
+\begin{itemize}
+    \item MATLAB code.
+    \item Full digitized dataset and calculation table.
+    \item Detailed derivation of the transmission coefficient if it is too long for the main paper.
+    \item Additional residual and sensitivity plots.
+\end{itemize}
+
+\newpage
+\IfFileExists{IEEEtran.bst}{\bibliographystyle{IEEEtran}}{\bibliographystyle{unsrt}}
+\bibliography{references}
+
+\end{document}
