@@ -31,7 +31,8 @@ In a classical model, an electron with insufficient energy (lower than the oxide
 This paper will establish a model of leakage using a one-dimensional trapezoidal potential barrier, the WKB approximation, and Python; evaluate the model with published \(J_G\)--\(t_{\mathrm{ox}}\) data \cite{green1999limits} by comparing the dependence of theoretical tunneling probability and experimental gate-leakage current density on oxide thickness; and discuss how leakage-related power dissipation affects energy efficiency, thermal stability, and reliability \cite{roy2003,skadron2004}.
 
 \section{Theoretical Background}
-
+\subsection{MOSFET Structure and Gate-Oxide Leakage}
+Figure ? is a diagram of a MOSFET, gate can switch or modulate the flow of current between the drain and the source; below the gate, oxide prevents electron transfer; as shown in the left side, the source is the terminal where electrons enter the channel; drain is where electrons leave the semiconductor channel; channel is the pathway of current flow. The enhancement-mode nMOSFET is controlled by the gate. Gate voltage, VG, will create an electric field in the oxide. When gate-to-source voltage is positive, electric field leads electrons approach the oxide-silicon interface. If VGS does not reach the threshold voltage VT, the electrons approaching the interface are not sufficient to create a current channel; by contrast, if VGS greater than VT, inversion layer will form at the interface, creating an electron channel connecting the source and the drain. This current, called drain current (ID), is the functional current used or signal transmission and switching. In contrast, the gate-leakage current IG crossing the oxide is parasitic.
 \subsection{One-Dimensional Slanted Potential Barrier}
 
 \subsection{WKB Approximation}
