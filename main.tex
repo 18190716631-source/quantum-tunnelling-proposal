@@ -34,7 +34,7 @@ This paper will establish a model of leakage using a one-dimensional trapezoidal
 
 \subsection{MOSFET Structure and Gate-Oxide Leakage}
 
-Figure ? is a diagram of a MOSFET, gate can switch or modulate the flow of current between the drain and the source; below the gate, oxide prevents electron transfer; as shown in the left side, the source is the terminal where electrons enter the channel; drain is where electrons leave the semiconductor channel; channel is the pathway of current flow. The enhancement-mode nMOSFET is controlled by the gate. Gate voltage, VG, will create an electric field in the oxide. When gate-to-source voltage is positive, electric field leads electrons approach the oxide-silicon interface. If VGS does not reach the threshold voltage VT, the electrons approaching the interface are not sufficient to create a current channel; by contrast, if VGS greater than VT, inversion layer will form at the interface, creating an electron channel connecting the source and the drain. This current, called drain current (ID), is the functional current used or signal transmission and switching. In contrast, the gate-leakage current IG crossing the oxide is parasitic.
+Figure~\ref{fig:mosfet-reference} shows a cross-sectional diagram of a MOSFET. The gate can switch or modulate the current between the drain and source. The oxide beneath the gate acts as an electrical insulator between the gate and the semiconductor, although electron tunneling can still occur when the oxide is sufficiently thin. The source is the terminal where electrons enter the channel, whereas the drain is where electrons leave the semiconductor channel; the channel is the pathway for current flow. The enhancement-mode nMOSFET is controlled by the gate. The gate voltage \(V_G\) creates an electric field in the oxide. When the gate-to-source voltage \(V_{GS}\) is positive, this electric field attracts electrons toward the oxide--silicon interface. If \(V_{GS}\) does not reach the threshold voltage \(V_T\), the electron concentration near the interface is insufficient to create a strong inversion channel. By contrast, if \(V_{GS}>V_T\), an inversion layer forms at the interface, creating an electron channel that connects the source and drain. The drain current \(I_D\) is the functional current used for signal transmission and switching. In contrast, the gate-leakage current \(I_G\), which crosses the oxide, is parasitic \cite[Secs.~2.3 and 3.1]{taur2009}.
 
 % Temporary reference image only. Before submission, replace it with an
 % original schematic labeling: gate, gate oxide, source, drain, channel,
@@ -44,11 +44,16 @@ Figure ? is a diagram of a MOSFET, gate can switch or modulate the flow of curre
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.58\textwidth]{figures/mosfet-reference.png}
-    \caption{MOSFET cross-section (temporary reference image).}
+    \caption{MOSFET cross-section (temporary reference image; to be replaced by an original schematic before submission).}
     \label{fig:mosfet-reference}
 \end{figure}
-The oxide can be regarded as the dielectric in the capacitor according to ​Cox=εox/tox, 
-where, Cox is the capacitance, εox is the potential difference, and tox is the thickness of the oxide. Stronger electrostatic control can be reached by smaller tox: when tox decreases, Cox increases. Meanwhile, however, the barrier width will also decrease, increasing both transmission probability and leakage current density.
+
+The oxide can be modeled as the dielectric in a capacitor. Its oxide capacitance per unit area is
+\begin{equation}
+    C_{\mathrm{ox}}=\frac{\varepsilon_{\mathrm{ox}}}{t_{\mathrm{ox}}},
+\end{equation}
+where \(C_{\mathrm{ox}}\) is the oxide capacitance per unit area, \(\varepsilon_{\mathrm{ox}}\) is the oxide permittivity, and \(t_{\mathrm{ox}}\) is the oxide thickness. The potential difference across the oxide is denoted by \(V_{\mathrm{ox}}\). Reducing \(t_{\mathrm{ox}}\) increases \(C_{\mathrm{ox}}\), thereby strengthening electrostatic control. However, the barrier width also decreases, increasing both the transmission probability and the gate-leakage current density.
+
 \subsection{One-Dimensional Slanted Potential Barrier}
 
 \subsection{WKB Approximation}
