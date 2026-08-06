@@ -41,25 +41,26 @@ data \cite{green1999limits} by comparing the dependence of theoretical tunneling
 
 \subsection{MOSFET Structure and Gate-Oxide Leakage}
 
-Figure~\ref{fig:mosfet-reference} shows a cross-sectional diagram of a MOSFET. %%加一点overall description比如3 terminals ....... connect....
-The gate can switch or modulate the current between the drain and source. The oxide beneath the gate acts as an electrical insulator between the gate and the semiconductor, although electron tunneling can still occur when the oxide is sufficiently thin. %%The source and drain are terminals that can be connected by a conductive channel.本来的这句话可以提到前面去
-The enhancement-mode nMOSFET %%这个东西是什么要介绍
-is controlled by the gate. In this paper, the source is assumed to be grounded, so \(V_S=0\). %%VS是什么要说出来，后面的VGS也要
-Therefore,  \(V_{GS}=V_G-V_S=V_G\). When \(V_{GS}\) is positive, the resulting electric field attracts electrons toward the oxide--silicon interface. If \(V_{GS}\) does not reach the threshold voltage \(V_T\), the electron concentration near the interface is insufficient to create a strong inversion channel. By contrast, if \(V_{GS}>V_T\), an inversion layer forms at the interface, creating an electron channel that connects the source and drain \cite[Secs.~2.3 and 3.1]{taur2009}. Once the inversion channel has formed, a nonzero drain-to-source voltage (\(V_{DS}\)) produces a net drain current (\(I_D\)) through the channel. Under normal nMOS bias with \(V_D>V_S\), electrons move from the source to the drain, whereas conventional drain current flows from the drain to the source. The drain current \(I_D\) is the functional current used for signal transmission and switching. In contrast, the gate-leakage current \(I_G\), which crosses the oxide, is parasitic.
+The enhancement-mode n-channel metal--oxide--semiconductor field-effect transistor (nMOSFET) considered in this paper consists of four terminals: the gate, source, drain, and body. The source and drain are heavily doped \(n^+\) regions formed within a p-type body, while the gate is electrically separated from the semiconductor by a thin oxide layer. In this paper, the source and body are grounded, so \(V_S=V_B=0\). Therefore, the gate-to-source voltage is \(V_{GS}=V_G-V_S=V_G\), and the drain-to-source voltage is \(V_{DS}=V_D-V_S=V_D\). These voltages have different functions: changing \(V_{GS}\) alters the vertical electric field across the gate stack and controls the charge distribution beneath the gate, whereas \(V_{DS}\) produces a lateral electric field that drives carriers through an established channel. Figure~\ref{fig:nmos-operation} illustrates this operation in four stages \cite[Secs.~2.3 and 3.1]{taur2009}.
 
-%%可以用网络图但是要画出process，具体解释见对话框
-
-% Temporary reference image only. Before submission, replace it with an
-% original schematic labeling: gate, gate oxide, source, drain, channel,
-% substrate, oxide thickness t_ox, channel-current path I_D,
-% electron-tunneling path (without assuming its direction), and the
-% x-direction normal to the oxide.
+% Temporary reference image only. Before submission, replace it with a
+% properly attributed, modified four-panel process figure showing:
+% (a) the off state, (b) gate-induced depletion, (c) inversion-channel
+% formation, and (d) source--drain conduction plus gate-oxide tunneling.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.58\textwidth]{figures/mosfet-reference.png}
-    \caption{MOSFET cross-section (temporary reference image; to be replaced by an original schematic before submission).}
-    \label{fig:mosfet-reference}
+    \caption{Planned four-stage operation of an enhancement-mode nMOSFET: (a) off state at \(V_{GS}=V_{DS}=0\); (b) gate-induced depletion at \(0<V_{GS}<V_T\); (c) formation of an inversion channel at \(V_{GS}>V_T\) and \(V_{DS}=0\); and (d) source--drain conduction and possible gate-oxide tunneling when \(V_{GS}>V_T\) and \(V_{DS}>0\). The current image is a temporary reference and will be replaced by a properly attributed, modified four-panel figure.}
+    \label{fig:nmos-operation}
 \end{figure}
+
+In Figure~\ref{fig:nmos-operation}(a), \(V_{GS}=0\) and \(V_{DS}=0\). The source--body and drain--body p--n junctions contain built-in depletion regions, but no gate-induced inversion channel connects the source and drain. Therefore, the enhancement-mode nMOSFET is in its off state.
+
+In Figure~\ref{fig:nmos-operation}(b), a positive gate voltage is applied such that \(0<V_{GS}<V_T\), where \(V_T\) is the threshold voltage. Positive charge on the gate produces a vertical electric field across the oxide. This field repels holes from the oxide--silicon interface and leaves negatively charged ionized acceptor atoms in the p-type body, forming a gate-induced depletion region. Electrons are also attracted toward the interface, but their concentration remains insufficient to form a continuous conducting channel.
+
+In Figure~\ref{fig:nmos-operation}(c), \(V_{GS}\) exceeds \(V_T\). The electron concentration at the oxide--silicon interface becomes sufficiently high to form a strong inversion layer. This electron-rich layer creates a conductive channel between the \(n^+\) source and drain. However, because \(V_{DS}=0\), there is no lateral electric field along the channel and therefore no net drain current \(I_D\).
+
+In Figure~\ref{fig:nmos-operation}(d), \(V_{GS}>V_T\) is maintained while a positive drain-to-source voltage \(V_{DS}>0\) is applied. The resulting lateral electric field drives electrons through the inversion channel from the source to the drain. Conventional drain current \(I_D\) flows in the opposite direction, from the drain to the source. This source--drain current is the functional current used for switching and signal transmission. At the same time, the vertical electric field remains present across the gate oxide. Although the oxide suppresses classical carrier transport, a sufficiently thin oxide allows electrons to tunnel through the potential barrier, producing the parasitic gate-leakage current \(I_G\) \cite{green2001review}. The direction of this tunneling current depends on the applied bias and carrier-injection conditions and will be specified after the experimental dataset is introduced.
 
 The oxide can be modeled as the dielectric in a capacitor. Its oxide capacitance per unit area  \(C_{\mathrm{ox}}\)  is
 \begin{equation}
