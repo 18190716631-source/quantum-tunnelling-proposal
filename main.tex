@@ -312,7 +312,29 @@ where
 \end{equation}
 Thus, Equation~\eqref{eq:log-transmission-thickness} predicts that electron transmission probability \(T\) will exponentially increase as the oxide thickness decreases. Also, increasing the positive potential difference between the entrance and exit will lower \(\beta\) and thus increase transmission probability \(T\) under \(0<qV_{\mathrm{ox}}<\Delta_0\) and constant \(\Delta_0\) and \(m^*\).
 
-\subsection{Connection between Transmission Probability and Gate Current Density}The gate current density(JG) can be regarded as the proxy of electron transmission probability: [insert JG=AΔtQtrans=qAΔtTNinc=qΦincT. ], assuming that the anti-direction tunneling is negligible. For the purpose of investigating the leading dependence on oxide thickness, the incident-electron supply is assumed to remain approximately constant across the samples. Then we can modeled JG [appro=]J0T where J0 absorbs supply-related factors. Substitute [insert JGJ0 equation number] into [insert eq:log-transmission-thickness equation number], lnJG=lnJ0−βtox.
+\subsection{Connection between Transmission Probability and Gate Current Density}
+
+The gate current density(JG) can be regarded as the proxy of electron transmission probability:
+\begin{align}
+    J_G
+    &\equiv \frac{Q_{\mathrm{trans}}}{A\Delta t}
+    =\frac{qN_{\mathrm{trans}}}{A\Delta t}
+    \notag\\
+    &=\frac{qTN_{\mathrm{inc}}}{A\Delta t}
+    =q\Phi_{\mathrm{inc}}T,
+    \label{eq:gate-current-flux}
+\end{align}
+where \(N_{\mathrm{trans}}=TN_{\mathrm{inc}}\) and
+\(\Phi_{\mathrm{inc}}\equiv N_{\mathrm{inc}}/(A\Delta t)\), assuming that the anti-direction tunneling is negligible. For the purpose of investigating the leading dependence on oxide thickness, the incident-electron supply is assumed to remain approximately constant across the samples. Then we can modeled \(J_G\)
+\begin{equation}
+    J_G\approx J_0T,
+    \label{eq:gate-current-proportional}
+\end{equation}
+where \(J_0\) absorbs supply-related factors. Substitute Equation~\eqref{eq:gate-current-proportional} into Equation~\eqref{eq:log-transmission-thickness},
+\begin{equation}
+    \ln J_G=\ln J_0-\beta t_{\mathrm{ox}}.
+    \label{eq:log-gate-current-thickness}
+\end{equation}
 \section{Experimental Data and Processing}
 
 \section{Results}
