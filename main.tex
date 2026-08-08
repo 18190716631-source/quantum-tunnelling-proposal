@@ -30,10 +30,11 @@ When a positive gate voltage is applied to an n-channel MOSFET, it establishes a
 
 Reducing the oxide thickness increases the oxide capacitance, allowing the gate voltage to control the channel charge more effectively. However, at the nanometer scale, a thinner oxide also means a narrower potential barrier. Thus, the tunneling probability increases, and the gate-leakage current density increases \cite{green2001review}.
 
-In a classical model, an electron with lower energy than the oxide barrier height cannot cross the oxide barrier. However, in quantum mechanic situation, its wavefunction extends into the classically forbidden region, producing a nonzero probability of transmission \cite[Sec.~9.2]{griffiths2018}.
-%%Apply V to gate: E across ocide layer
-Since the oxide electric field makes the electron potential energy vary with position, a trapezoidal barrier is used \cite{simmons1963}.
-%%Apply V是lift还是lower？semiconductor的V高一点还是gate的V高一点？梯形的左边高还是右边高？
+In a classical model, an electron whose energy is lower than the oxide barrier cannot cross it. However, in quantum mechanics, the electron wavefunction extends into the classically forbidden region, producing a nonzero probability of transmission \cite[Sec.~9.2]{griffiths2018}. The applied positive gate voltage creates a potential difference between the gate and the semiconductor, part of which appears as a voltage drop \(V_{\mathrm{ox}}\) across the oxide. Assuming that the electric field inside the oxide is approximately uniform, its magnitude is
+\[
+F_{\mathrm{ox}}\approx\frac{V_{\mathrm{ox}}}{t_{\mathrm{ox}}}.
+\]
+In this paper, \(x=0\) is defined at the semiconductor--oxide interface, while \(x=t_{\mathrm{ox}}\) is defined at the gate--oxide interface. Since the potential energy of an electron is \(U=-q\varphi\), it decreases toward the positively biased gate. Therefore, the electric field tilts the oxide potential barrier, which is approximated as trapezoidal rather than rectangular \cite{simmons1963}.
 We will establish a model of leakage using a one-dimensional trapezoidal potential barrier by applying the Wentzel--Kramers--Brillouin (WKB) approximation and computational model with Python, evaluate the model with published \(J_G\)--\(t_{\mathrm{ox}}\) %%解释这两个东西是什么
 data \cite{green1999limits} by comparing the dependence of theoretical tunneling probability and experimental gate-leakage current density on oxide thickness, and estimate leakage-related electrical power density before discussing its possible implications for energy efficiency, thermal stability, and reliability \cite{roy2003,skadron2004}.
 
