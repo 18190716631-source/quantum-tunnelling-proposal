@@ -76,112 +76,164 @@ where \(\varepsilon_{\mathrm{ox}}\) is the oxide permittivity and \(t_{\mathrm{o
 
 \subsection{Model Assumptions and Barrier Definition}
 This model is constructed to determine the electron transmission probability(T). We assume that electron always move along the direction perpendicular to oxide layer linearly(1D), and we use x to show this direction. In this model, oxide thickness(tox) will be modeled as the potential barrier. Assuming the electric field is constant inside the oxide, we will apply trapezoidal barrier model to MOSFET, our research object, because electron potential energy linearly changes along with x.  
-[insert 开头段落之后，引出你的模型方程：
+\begin{equation}
+    \Delta(x)\equiv U(x)-E
+    =\Delta_0-\frac{qV_{\mathrm{ox}}}{t_{\mathrm{ox}}}x,
+    \qquad 0\leq x\leq t_{\mathrm{ox}}.
+    \label{eq:trapezoidal-barrier}
+\end{equation}
+Here, \(x=0\) is taken at the electron-injection interface, and positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the \(+x\)-direction. In Equation~\eqref{eq:trapezoidal-barrier}, \(\Delta(x)=U(x)-E\) is the effective barrier energy that the electron must overcome at position \(x\); \(\Delta_0=U(0)-E\) is the barrier energy at the oxide entrance; \(V_{\mathrm{ox}}\) is the voltage drop across the oxide; \(t_{\mathrm{ox}}\) is the oxide thickness; and \(q\) is the magnitude of the elementary charge.
 
-Δ(x)≡U(x)−E=Δ0−toxqVoxx,0≤x≤tox.你需要在方程后自己解释：
-
-\begin{itemize}
-    \item U(x)−E：电子在位置 x 处需要克服的有效势垒高度； 
-    \item Δ0=U(0)−E：oxide 入口处的势垒高度； 
-    \item Vox：oxide 两端的 voltage drop； 
-    \item tox：oxide thickness； 
-    \item q：elementary charge 的大小； 
-    \item x：电子穿过 oxide 的方向。 
-\end{itemize}
-然后从方程得出出口处势垒高度：
-
-Δ1=Δ(tox)=Δ0−qVox.最后指出这部分模型成立的条件：
-
-Δ1>0.因为只有这样，整个 oxide 内都有 U(x)>E，势垒才是完整的 trapezoidal barrier。如果 Δ1≤0，turning point 会出现在 oxide 内，之后的积分范围就必须改变。
-]
+At the oxide exit, the barrier energy is
+\begin{equation}
+    \Delta_1\equiv\Delta(t_{\mathrm{ox}})
+    =\Delta_0-qV_{\mathrm{ox}}.
+    \label{eq:exit-barrier}
+\end{equation}
+The complete trapezoidal-barrier model therefore requires
+\begin{equation}
+    \Delta_1>0,
+    \label{eq:trapezoidal-condition}
+\end{equation}
+so that \(U(x)>E\) throughout the oxide. If \(\Delta_1\leq 0\), a turning point occurs inside the oxide and the upper limit of the forbidden-region integral must be changed from \(t_{\mathrm{ox}}\) to that turning point.
 \subsection{Derivation of the WKB Transmission Probability}
 To determine the electron transmission probability(T) along x-direction motion, we will start from one dimensional time-independent  Schrodinger equation.
-[Insert one-dimensional time-independent Schrödinger equation here]
-where[insert definition].
+\begin{equation}
+    -\frac{\hbar^2}{2m^*}\frac{d^2\psi(x)}{dx^2}
+    +U(x)\psi(x)=E\psi(x).
+    \label{eq:tise}
+\end{equation}
+where \(\psi(x)\) is the electron wavefunction, \(U(x)\) is the potential energy, \(E\) is the electron energy, and \(m^*\) is the electron effective mass within the oxide.
 
 As the potential energy (U(x)) changes with the different position(x), we cannot solve Schrodinger equation by simply apply plane-wave solution. Thus, we rewrite the wavefunction into the multiply of slowly change amplitude and fast change phase.
-[Insert ψ(x)=A(x)eiϕ(x) here]
-Substitute [ψ(x)=A(x)eiϕ(x) equation number] in to [Schrodinger equation number], and separate the equation into real-part and imaginary-part equations: 
-[Insert the real-part and imaginary-part equations here]
+\begin{equation}
+    \psi(x)=A(x)e^{i\phi(x)}.
+    \label{eq:wkb-ansatz}
+\end{equation}
+Substitute Equation~\eqref{eq:wkb-ansatz} in to Equation~\eqref{eq:tise}, and separate the equation into real-part and imaginary-part equations: 
+\begin{align}
+    A''(x)-A(x)\left[\phi'(x)\right]^2
+    &=-\frac{2m^*}{\hbar^2}[E-U(x)]A(x),
+    \label{eq:wkb-real}\\
+    2A'(x)\phi'(x)+A(x)\phi''(x)
+    &=0.
+    \label{eq:wkb-imag}
+\end{align}
 
-In WKB approximation, we assume that amplitude change (A(x)) changes much slower than phase(ϕ(x)) changes. Thus, the amplitude curvature(A''(x)) term is much smaller than phase term and is negligible. Then, through real-part equation[insert equation number] we can obtain local phase gradient. Meanwhile, the imaginary-part equation[insert equation number] can show the relationship between amplitude and local momentum.
-[Insert ϕ′(x)≈±p(x)/ℏ and A(x)∝1/root p(x) here]
-where p(x)=[root] 2m∗[E−U(x)]
+In WKB approximation, we assume that amplitude change (A(x)) changes much slower than phase(\(\phi(x)\)) changes. Thus, the amplitude curvature(A''(x)) term is much smaller than phase term and is negligible. Then, through real-part equation~\eqref{eq:wkb-real} we can obtain local phase gradient. Meanwhile, the imaginary-part equation~\eqref{eq:wkb-imag} can show the relationship between amplitude and local momentum.
+\begin{align}
+    \phi'(x)&\approx\pm\frac{p(x)}{\hbar},
+    \label{eq:phase-gradient}\\
+    2A'\phi'+A\phi''=0
+    &\ \Longrightarrow\
+    \frac{d}{dx}\left[A^2(x)\phi'(x)\right]=0
+    \ \Longrightarrow\
+    A(x)\propto\frac{1}{\sqrt{p(x)}}.
+    \label{eq:wkb-amplitude}
+\end{align}
+where \(p(x)=\sqrt{2m^*[E-U(x)]}\),
 with p(x) represents the local classical momentum in allowed region.
 
-[insert: 对 ϕ′(x) 积分，得到 phase： 
-ϕ(x)≈±ℏ1∫xp(x′)dx′.
-把 phase 和 amplitude 代回 ψ=Aeiϕ，得到 allowed-region WKB wavefunction： 
-ψ(x)≈p(x)1[C+eℏi∫xp(x′)dx′+C−e−ℏi∫xp(x′)dx′].]
+Integrating Equation~\eqref{eq:phase-gradient} gives
+\begin{equation}
+    \phi(x)\approx
+    \pm\frac{1}{\hbar}\int^{x}p(x')\,dx',
+    \label{eq:wkb-phase}
+\end{equation}
+where the constant phase has been absorbed into the coefficients. Substituting Equations~\eqref{eq:wkb-phase} and \eqref{eq:wkb-amplitude} back into the wavefunction gives the allowed-region WKB solution
+\begin{equation}
+    \psi(x)\approx
+    \frac{1}{\sqrt{p(x)}}
+    \left[
+        C_{+}\exp\left(\frac{i}{\hbar}\int^{x}p(x')\,dx'\right)
+        +C_{-}\exp\left(-\frac{i}{\hbar}\int^{x}p(x')\,dx'\right)
+    \right].
+    \label{eq:allowed-wkb}
+\end{equation}
 When E>U(x), p(x) is a real number, so the two exponential terms are oscillatory. The region where E>U(x) is called classically allowed region.
 
 \subsection{WKB Solution in the Classically Forbidden Region}
-Different from classically allowed region, classically forbbiden region is where U(x)>E, so the classical kinetic energy E-U(x) will be negative. Thus, p(x) will become imaginary quantity. We define the decay constant describing the decay speed inside the barrier κ(x) as [insert κ(x) definition equation],
-so, p(x)=iℏκ(x).
+Different from classically allowed region, classically forbbiden region is where U(x)>E, so the classical kinetic energy E-U(x) will be negative. Thus, p(x) will become imaginary quantity. We define the decay constant describing the decay speed inside the barrier \(\kappa(x)\) as \begin{equation}
+    \kappa(x)\equiv
+    \frac{\sqrt{2m^*[U(x)-E]}}{\hbar}.
+    \label{eq:kappa}
+\end{equation},
+so, \(p(x)=i\hbar\kappa(x)\).
 
-After substitute  p(x)=iℏκ(x). into the exponential term of allowed-region solution, [insert exp[±ℏi∫p(x)dx]⟶exp[∓∫κ(x)dx]], we get [ψ(x)≈κ(x)Ce−∫xκ(x′)dx′+κ(x)De+∫xκ(x′)dx′].
+After substitute \(p(x)=i\hbar\kappa(x)\) into the exponential term of allowed-region solution, \begin{equation}
+    \exp\left[\pm\frac{i}{\hbar}\int p(x)\,dx\right]
+    \longrightarrow
+    \exp\left[\mp\int\kappa(x)\,dx\right].
+    \label{eq:forbidden-exponential}
+\end{equation}, we get \begin{equation}
+    \psi_{\mathrm{B}}(x)\approx
+    \frac{1}{\sqrt{\kappa(x)}}
+    \left[
+        C\exp\left(-\int^{x}\kappa(x')\,dx'\right)
+        +D\exp\left(+\int^{x}\kappa(x')\,dx'\right)
+    \right],
+    \label{eq:forbidden-wkb}
+\end{equation}
+where constant phase factors have been absorbed into \(C\) and \(D\).
 The first term is the exponentially decaying component and the second term is the exponentially growing component. 
 
-[insert 
-\subsubsection{1. 先保留完整解}
+To retain both components while determining their relative importance, define
+\begin{equation}
+    S(x)\equiv\int_{x_1}^{x}\kappa(x')\,dx',
+    \qquad
+    K\equiv S(x_2)=\int_{x_1}^{x_2}\kappa(x)\,dx,
+    \label{eq:barrier-action}
+\end{equation}
+where \(x_1\) and \(x_2\) are the boundaries of the classically forbidden interval. Equation~\eqref{eq:forbidden-wkb} can then be written as
+\begin{equation}
+    \psi_{\mathrm{B}}(x)\approx
+    \frac{1}{\sqrt{\kappa(x)}}
+    \left[Ce^{-S(x)}+De^{S(x)}\right].
+    \label{eq:forbidden-action}
+\end{equation}
+At \(x=x_2\), the decreasing and increasing components are proportional to \(Ce^{-K}\) and \(De^{K}\), respectively. If no wave is incident from the right, the allowed region beyond the barrier contains only the transmitted wave,
+\begin{equation}
+    \psi_{\mathrm{III}}(x)=t\,e^{ik_2(x-x_2)}.
+    \label{eq:transmitted-wave}
+\end{equation}
+Matching the wavefunction and the appropriate flux-continuity condition at \(x_2\) gives, to leading exponential order,
+\begin{equation}
+    Ce^{-K}\sim t,
+    \qquad
+    De^{K}\sim t,
+    \label{eq:right-boundary-matching}
+\end{equation}
+where \(\sim\) suppresses non-exponential factors arising from the wave vectors, effective masses, and interface matching. Dividing these relations gives
+\begin{equation}
+    \frac{D}{C}\sim e^{-2K}.
+    \label{eq:growing-coefficient-suppression}
+\end{equation}
+Therefore, when \(K\gg 1\), the coefficient of the increasing component is exponentially smaller than that of the decreasing component at the barrier entrance. This does not mean that the increasing component is identically zero throughout a finite barrier; near \(x_2\), the two contributions can be of comparable order.
 
-定义
-
-S(x)=∫x1xκ(x′)dx′,那么 forbidden region 中的完整 WKB solution 是
-
-ψB(x)≈κ(x)1[Ce−S(x)+DeS(x)].这里：
-
-\begin{itemize}
-    \item Ce−S(x)向右逐渐衰减； 
-    \item DeS(x)向右逐渐增长； 
-    \item 这一步两项都保留。 
-\end{itemize}
-
-\subsubsection{2. 定义穿过整个势垒的衰减量}
-
-在出口 x=x2 处：
-
-K≡S(x2)=∫x1x2κ(x)dx.因此，出口处的两个分量分别为
-
-Ce−K和DeK.
-
-\subsubsection{3. 使用右侧边界条件}
-
-势垒右侧没有从右向左入射的电子，因此只有 transmitted wave。将势垒内部波函数及其一阶导数与 transmitted wave 在 x2 处匹配，会得到：
-
-Ce−K∼t,DeK∼t,其中 t 是 transmitted-wave amplitude。这里的 ∼ 表示忽略由 wave vector、effective mass 和边界条件产生的非指数 prefactors。
-
-两式相除可得：
-
-CD∼e−2K.所以当
-
-K≫1时，
-
-CD≪1.这才是可以近似忽略增长项系数的理由。注意：接近势垒出口时，两项的实际大小仍可能相近，因此不能说增长项在整个有限势垒中等于零。
-
-\subsubsection{4. 得到 transmission amplitude}
-
-在势垒入口处，S(x1)=0。由于 D/C≪1，入口处主要由 C 决定，而出口处 transmitted amplitude 满足：
-
-t∝Ce−K.因此，transmission amplitude 的主导指数关系为
-
-Ainct∝e−K,其中 Ainc 是 incident-wave amplitude。
-
-由于 transmission probability 是 transmitted probability current 与 incident probability current 的比值：
-
-T=jincjtrans,所以更完整地可以写成：
-
-T≈Pe−2K,其中 P 是由边界匹配、电子速度和 effective mass 等产生的 prefactor。
-
-如果只研究主导的指数依赖，则写成：
-
-T≈e−2K.代入 K：
-
-T≈exp[−2∫x1x2κ(x)dx]再代入
-
-κ(x)=ℏ2m∗[U(x)−E],得到：
-
-T≈exp[−ℏ2∫x1x22m∗[U(x)−E]dx].]
+At \(x=x_1\), \(S(x_1)=0\). Since \(D/C\ll 1\), the wavefunction at the entrance is dominated by \(C\), while Equation~\eqref{eq:right-boundary-matching} gives \(t\sim Ce^{-K}\). Thus, up to non-exponential interface factors,
+\begin{equation}
+    \frac{t}{A_{\mathrm{inc}}}\sim e^{-K},
+    \label{eq:transmission-amplitude}
+\end{equation}
+where \(A_{\mathrm{inc}}\) is the incident-wave amplitude. The transmission probability is defined as the ratio of transmitted to incident probability current:
+\begin{equation}
+    T\equiv\frac{j_{\mathrm{trans}}}{j_{\mathrm{inc}}}
+    \approx\mathcal{P}e^{-2K},
+    \label{eq:transmission-prefactor}
+\end{equation}
+where \(\mathcal{P}\) is a non-exponential prefactor determined by the interface matching, carrier velocities, and effective masses. If only the leading exponential dependence is retained,
+\begin{align}
+    T
+    &\approx e^{-2K}
+    =\exp\left[-2\int_{x_1}^{x_2}\kappa(x)\,dx\right]
+    \label{eq:wkb-transmission-kappa}\\
+    &=\exp\left[
+        -\frac{2}{\hbar}
+        \int_{x_1}^{x_2}
+        \sqrt{2m^*[U(x)-E]}\,dx
+    \right].
+    \label{eq:wkb-transmission}
+\end{align}
 \subsection{Application to a Trapezoidal Potential Barrier}
 
 \subsection{Connection between Transmission Probability and Gate Current Density}
