@@ -93,10 +93,83 @@ Substitute [ψ(x)=A(x)eiϕ(x) equation number] in to [Schrodinger equation numbe
 [Insert the real-part and imaginary-part equations here]
 
 In WKB approximation, we assume that amplitude change (A(x)) changes much slower than phase(ϕ(x)) changes. Thus, the amplitude curvature(A''(x)) term is much smaller than phase term and is negligible. Then, through real-part equation[insert equation number] we can obtain local phase gradient. Meanwhile, the imaginary-part equation[insert equation number] can show the relationship between amplitude and local momentum.
-[Insert ϕ′(x)≈±p(x)/ℏ and A(x)∝1/p(x) here]
+[Insert ϕ′(x)≈±p(x)/ℏ and A(x)∝1/root p(x) here]
 where p(x)=[root] 2m∗[E−U(x)]
-with p(x) represents the local classical momentum in allowed region
+with p(x) represents the local classical momentum in allowed region.
 
+[insert: 对 ϕ′(x) 积分，得到 phase： 
+ϕ(x)≈±ℏ1∫xp(x′)dx′.
+把 phase 和 amplitude 代回 ψ=Aeiϕ，得到 allowed-region WKB wavefunction： 
+ψ(x)≈p(x)1[C+eℏi∫xp(x′)dx′+C−e−ℏi∫xp(x′)dx′].]
+When E>U(x), p(x) is a real number, so the two exponential terms are oscillatory. The region where E>U(x) is called classically allowed region.
+
+\subsection{WKB Solution in the Classically Forbidden Region}
+Different from classically allowed region, classically forbbiden region is where U(x)>E, so the classical kinetic energy E-U(x) will be negative. Thus, p(x) will become imaginary quantity. We define the decay constant describing the decay speed inside the barrier κ(x) as [insert κ(x) definition equation],
+so, p(x)=iℏκ(x).
+
+After substitute  p(x)=iℏκ(x). into the exponential term of allowed-region solution, [insert exp[±ℏi∫p(x)dx]⟶exp[∓∫κ(x)dx]], we get [ψ(x)≈κ(x)Ce−∫xκ(x′)dx′+κ(x)De+∫xκ(x′)dx′].
+The first term is the exponentially decaying component and the second term is the exponentially growing component. 
+
+[insert 
+\subsubsection{1. 先保留完整解}
+
+定义
+
+S(x)=∫x1xκ(x′)dx′,那么 forbidden region 中的完整 WKB solution 是
+
+ψB(x)≈κ(x)1[Ce−S(x)+DeS(x)].这里：
+
+\begin{itemize}
+    \item Ce−S(x)向右逐渐衰减； 
+    \item DeS(x)向右逐渐增长； 
+    \item 这一步两项都保留。 
+\end{itemize}
+
+\subsubsection{2. 定义穿过整个势垒的衰减量}
+
+在出口 x=x2 处：
+
+K≡S(x2)=∫x1x2κ(x)dx.因此，出口处的两个分量分别为
+
+Ce−K和DeK.
+
+\subsubsection{3. 使用右侧边界条件}
+
+势垒右侧没有从右向左入射的电子，因此只有 transmitted wave。将势垒内部波函数及其一阶导数与 transmitted wave 在 x2 处匹配，会得到：
+
+Ce−K∼t,DeK∼t,其中 t 是 transmitted-wave amplitude。这里的 ∼ 表示忽略由 wave vector、effective mass 和边界条件产生的非指数 prefactors。
+
+两式相除可得：
+
+CD∼e−2K.所以当
+
+K≫1时，
+
+CD≪1.这才是可以近似忽略增长项系数的理由。注意：接近势垒出口时，两项的实际大小仍可能相近，因此不能说增长项在整个有限势垒中等于零。
+
+\subsubsection{4. 得到 transmission amplitude}
+
+在势垒入口处，S(x1)=0。由于 D/C≪1，入口处主要由 C 决定，而出口处 transmitted amplitude 满足：
+
+t∝Ce−K.因此，transmission amplitude 的主导指数关系为
+
+Ainct∝e−K,其中 Ainc 是 incident-wave amplitude。
+
+由于 transmission probability 是 transmitted probability current 与 incident probability current 的比值：
+
+T=jincjtrans,所以更完整地可以写成：
+
+T≈Pe−2K,其中 P 是由边界匹配、电子速度和 effective mass 等产生的 prefactor。
+
+如果只研究主导的指数依赖，则写成：
+
+T≈e−2K.代入 K：
+
+T≈exp[−2∫x1x2κ(x)dx]再代入
+
+κ(x)=ℏ2m∗[U(x)−E],得到：
+
+T≈exp[−ℏ2∫x1x22m∗[U(x)−E]dx].]
 \subsection{Application to a Trapezoidal Potential Barrier}
 
 \subsection{Connection between Transmission Probability and Gate Current Density}
