@@ -23,14 +23,14 @@
 \begin{center}
     {\large\bfseries Testing a One-Dimensional Model of MOSFET Gate-Oxide Tunneling Using Published Leakage-Current Data}
 \end{center}
-
+%%introduction 总体太少了（最后应该是要2页多才正常），特别需要增加literature review的板块，比如。。。have been done
 \section{Introduction}
 Metal--oxide--semiconductor field-effect transistors (MOSFETs) are widely used as electronic switches because the voltage applied to the gate controls the conductivity of the channel. 
-When a positive gate voltage greater than threshold voltage is applied to an n-channel MOSFET, it establishes an electric field across the oxide, attracting electrons toward the oxide–semiconductor interface and forming a conductive channel. The oxide electrically separates the gate from the semiconductor and ideally prevents direct charge flow, while still allowing the gate to control the channel electrostatically.
+When a positive gate voltage is applied to an n-channel MOSFET, it establishes an electric field across the oxide, attracting electrons toward the oxide--semiconductor interface and forming a conductive channel. The oxide electrically separates the gate from the semiconductor and ideally prevents direct charge flow, while still allowing the gate to control the channel electrostatically.
 
 Reducing the oxide thickness increases the oxide capacitance, allowing the gate voltage to control the channel charge more effectively. However, at the nanometer scale, a thinner oxide also means a narrower potential barrier. Thus, the tunneling probability increases, and the gate-leakage current density increases \cite{green2001review}.
 
-In a classical model, an electron whose energy is lower than the oxide barrier cannot cross it. However, in quantum mechanics, the electron wavefunction extends into the classically forbidden region, producing a nonzero probability of transmission \cite[Sec.~9.2]{griffiths2018}. The applied positive gate voltage creates a potential difference between the gate and the semiconductor, part of which appears as a voltage drop \(V_{\mathrm{ox}}\) across the oxide. Assuming that the electric field (\(F_{\mathrm{ox}}\)) inside the oxide is approximately uniform, its magnitude is
+In a classical model, an electron whose energy is lower than the oxide barrier cannot cross it. However, in quantum mechanics, the electron wavefunction extends into the classically forbidden region, producing a nonzero probability of transmission \cite[Sec.~9.2]{griffiths2018}. The applied positive gate voltage creates a potential difference between the gate and the semiconductor, part of which appears as a voltage drop \(V_{\mathrm{ox}}\) across the oxide. Assuming that the electric field inside the oxide is approximately uniform, its magnitude is
 \[
 F_{\mathrm{ox}}\approx\frac{V_{\mathrm{ox}}}{t_{\mathrm{ox}}}.
 \]
@@ -40,7 +40,7 @@ Research on gate-oxide tunneling developed from general insulating-film transpor
 
 As gate oxides entered the nanometer range, research shifted toward direct tunneling and its effect on oxide scaling. Schuegraf, King, and Hu (1992) identified direct tunneling as the dominant leakage mechanism in ultrathin SiO$_2$ and examined how it restricts further reduction in oxide thickness \cite{schuegraf1992}. Depas et al. (1995) analyzed current--voltage measurements from poly-Si/SiO$_2$/Si structures with oxide thicknesses between 3 and 6 nm \cite{depas1995}. By extending an analytical Fowler--Nordheim expression, they found that direct tunneling became important below approximately 4.5 nm. Their WKB model also accounted for band bending in the silicon substrate and poly-Si gate. Using the oxide electron effective mass as a fitting parameter, they showed that the model could describe both direct and Fowler--Nordheim currents quantitatively. Green et al. (2001) later reviewed the physical and electrical limits of ultrathin SiO$_2$ and Si--O--N gate dielectrics, emphasizing the practical importance of understanding how leakage current depends on oxide thickness \cite{green2001review}.
 
-We will establish a model of leakage using a one-dimensional trapezoidal potential barrier by applying the Wentzel--Kramers--Brillouin (WKB) approximation and computational model with Python, evaluate the model with published gate-leakage current density to oxide thickness(\(J_G\)--\(t_{\mathrm{ox}}\)) data \cite{green1999limits} by comparing the dependence of theoretical tunneling probability and experimental gate-leakage current density on oxide thickness, and estimate leakage-related electrical power density before discussing its possible implications for energy efficiency, thermal stability, and reliability \cite{roy2003,skadron2004}.
+We will establish a model of leakage using a one-dimensional trapezoidal potential barrier by applying the Wentzel--Kramers--Brillouin (WKB) approximation and computational model with Python, evaluate the model with published gate-leakage current density(\(J_G\)) and oxide thickness(\(t_{\mathrm{ox}}\)) data \cite{green1999limits} by comparing the dependence of theoretical tunneling probability and experimental gate-leakage current density on oxide thickness, and estimate leakage-related electrical power density before discussing its possible implications for energy efficiency, thermal stability, and reliability \cite{roy2003,skadron2004}.
 
 \section{Theoretical Background}
 
@@ -55,7 +55,7 @@ The enhancement-mode n-channel metal--oxide--semiconductor field-effect transist
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.58\textwidth]{figures/mosfet-reference.png}
-    \caption{Planned four-stage operation of an enhancement-mode nMOSFET}
+    \caption{Planned four-stage operation of an enhancement-mode nMOSFET: (a) off state at \(V_{GS}=V_{DS}=0\); (b) gate-induced depletion at \(0<V_{GS}<V_T\); (c) formation of an inversion channel at \(V_{GS}>V_T\) and \(V_{DS}=0\); and (d) source--drain conduction and possible gate-oxide tunneling when \(V_{GS}>V_T\) and \(V_{DS}>0\). The current image is a temporary reference and will be replaced by a properly attributed, modified four-panel figure.}
     \label{fig:nmos-operation}
 \end{figure}
 
@@ -80,14 +80,14 @@ where \(\varepsilon_{\mathrm{ox}}\) is the oxide permittivity and \(t_{\mathrm{o
 \section{Model Construction}
 
 \subsection{Model Assumptions and Barrier Definition}
-This model is constructed to determine the electron transmission probability(T). We assume that electron always move along the direction perpendicular to oxide layer linearly(1D), and we use x to show this direction. In this model, oxide thickness(tox) will be modeled as the potential barrier. Assuming the electric field is constant inside the oxide, we will apply trapezoidal barrier model to MOSFET, our research object, because electron potential energy linearly changes along with x.  
+This model is constructed to determine the electron transmission probability \(T\). We assume that electron motion is one-dimensional and perpendicular to the oxide layer, and we use \(x\) to represent this direction. In this model, the oxide thickness \(t_{\mathrm{ox}}\) will be modeled as the width of the potential barrier. Assuming that the electric field is constant inside the oxide, we will apply a trapezoidal-barrier model to the MOSFET because the electron potential energy varies linearly with \(x\).  
 \begin{equation}
     \Delta(x)\equiv U(x)-E
     =\Delta_0-\frac{qV_{\mathrm{ox}}}{t_{\mathrm{ox}}}x,
     \qquad 0\leq x\leq t_{\mathrm{ox}}.
     \label{eq:trapezoidal-barrier}
 \end{equation}
-Here, \(x=0\) is taken at the electron-injection interface, and positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the \(+x\)-direction. In Equation~\eqref{eq:trapezoidal-barrier}, \(\Delta(x)=U(x)-E\) is the effective barrier energy that the electron must overcome at position \(x\); \(\Delta_0=U(0)-E\) is the barrier energy at the oxide entrance; \(V_{\mathrm{ox}}\) is the voltage drop across the oxide; \(t_{\mathrm{ox}}\) is the oxide thickness; and \(q\) is the magnitude of the elementary charge.
+Here, \(x=0\) is taken at the electron-injection interface, and positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the positive \(x\)-direction. In Equation~\eqref{eq:trapezoidal-barrier}, \(\Delta(x)=U(x)-E\) is the effective barrier energy that the electron must overcome at position \(x\); \(\Delta_0=U(0)-E\) is the barrier energy at the oxide entrance; \(V_{\mathrm{ox}}\) is the voltage drop across the oxide; \(t_{\mathrm{ox}}\) is the oxide thickness; and \(q\) is the magnitude of the elementary charge.
 
 At the oxide exit, the barrier energy is
 \begin{equation}
@@ -102,20 +102,20 @@ The complete trapezoidal-barrier model therefore requires
 \end{equation}
 so that \(U(x)>E\) throughout the oxide. If \(\Delta_1\leq 0\), a turning point occurs inside the oxide and the upper limit of the forbidden-region integral must be changed from \(t_{\mathrm{ox}}\) to that turning point.
 \subsection{Derivation of the WKB Transmission Probability}
-To determine the electron transmission probability(T) along x-direction motion, we will start from one dimensional time-independent  Schrodinger equation.
+To determine the electron transmission probability \(T\) for motion along the \(x\)-direction, we start with the one-dimensional time-independent Schr\"odinger equation.
 \begin{equation}
     -\frac{\hbar^2}{2m^*}\frac{d^2\psi(x)}{dx^2}
-    +U(x)\psi(x)=E\psi(x).
+    +U(x)\psi(x)=E\psi(x),
     \label{eq:tise}
 \end{equation}
-where \(\psi(x)\) is the electron wavefunction, \(U(x)\) is the potential energy, \(E\) is the electron energy, and \(m^*\) is the electron effective mass within the oxide.
+where \(\psi(x)\) is the electron wavefunction, \(U(x)\) is the potential energy, \(E\) is the electron energy, \(m^*\) is the electron effective mass within the oxide, and \(\hbar\) is the reduced Planck constant.
 
-As the potential energy (U(x)) changes with the different position(x), we cannot solve Schrodinger equation by simply apply plane-wave solution. Thus, we rewrite the wavefunction into the multiply of slowly change amplitude and fast change phase.
+As the potential energy \(U(x)\) changes with position \(x\), we cannot solve the Schr\"odinger equation by simply applying a plane-wave solution. Thus, we rewrite the wavefunction as the product of a slowly varying amplitude and a rapidly varying phase.
 \begin{equation}
     \psi(x)=A(x)e^{i\phi(x)}.
     \label{eq:wkb-ansatz}
 \end{equation}
-Substitute Equation~\eqref{eq:wkb-ansatz} in to Equation~\eqref{eq:tise}, and separate the equation into real-part and imaginary-part equations: 
+Substituting Equation~\eqref{eq:wkb-ansatz} into Equation~\eqref{eq:tise} and separating the result into real-part and imaginary-part equations gives
 \begin{align}
     A''(x)-A(x)\left[\phi'(x)\right]^2
     &=-\frac{2m^*}{\hbar^2}[E-U(x)]A(x),
@@ -125,7 +125,7 @@ Substitute Equation~\eqref{eq:wkb-ansatz} in to Equation~\eqref{eq:tise}, and se
     \label{eq:wkb-imag}
 \end{align}
 
-In WKB approximation, we assume that amplitude change (A(x)) changes much slower than phase(\(\phi(x)\)) changes. Thus, the amplitude curvature(A''(x)) term is much smaller than phase term and is negligible. Then, through real-part equation~\eqref{eq:wkb-real} we can obtain local phase gradient. Meanwhile, the imaginary-part equation~\eqref{eq:wkb-imag} can show the relationship between amplitude and local momentum.
+In the WKB approximation, we assume that the amplitude \(A(x)\) varies much more slowly than the phase \(\phi(x)\). Thus, the amplitude-curvature term \(A''(x)\) is much smaller than the phase term and can be neglected. Then, the real-part equation~\eqref{eq:wkb-real} gives the local phase gradient. Meanwhile, the imaginary-part equation~\eqref{eq:wkb-imag} gives the relationship between the amplitude and the local momentum.
 \begin{align}
     \phi'(x)&\approx\pm\frac{p(x)}{\hbar},
     \label{eq:phase-gradient}\\
@@ -133,11 +133,10 @@ In WKB approximation, we assume that amplitude change (A(x)) changes much slower
     &\ \Longrightarrow\
     \frac{d}{dx}\left[A^2(x)\phi'(x)\right]=0
     \ \Longrightarrow\
-    A(x)\propto\frac{1}{\sqrt{p(x)}}.
+    A(x)\propto\frac{1}{\sqrt{p(x)}},
     \label{eq:wkb-amplitude}
 \end{align}
-where \(p(x)=\sqrt{2m^*[E-U(x)]}\),
-with p(x) represents the local classical momentum in allowed region.
+where \(p(x)=\sqrt{2m^*[E-U(x)]}\) represents the local classical momentum in the classically allowed region.
 
 Integrating Equation~\eqref{eq:phase-gradient} gives
 \begin{equation}
@@ -155,22 +154,26 @@ where the constant phase has been absorbed into the coefficients. Substituting E
     \right].
     \label{eq:allowed-wkb}
 \end{equation}
-When E>U(x), p(x) is a real number, so the two exponential terms are oscillatory. The region where E>U(x) is called classically allowed region.
+When \(E>U(x)\), \(p(x)\) is real, so the two exponential terms are oscillatory. The region where \(E>U(x)\) is called the classically allowed region.
 
 \subsection{WKB Solution in the Classically Forbidden Region}
-Different from classically allowed region, classically forbbiden region is where U(x)>E, so the classical kinetic energy E-U(x) will be negative. Thus, p(x) will become imaginary quantity. We define the decay constant describing the decay speed inside the barrier \(\kappa(x)\) as \begin{equation}
+Unlike the classically allowed region, the classically forbidden region is defined by \(U(x)>E\), so the classical kinetic energy \(E-U(x)\) is negative. Thus, \(p(x)\) is imaginary. We define the attenuation coefficient \(\kappa(x)\), which describes the inverse decay length inside the barrier, as
+\begin{equation}
     \kappa(x)\equiv
-    \frac{\sqrt{2m^*[U(x)-E]}}{\hbar}.
+    \frac{\sqrt{2m^*[U(x)-E]}}{\hbar},
     \label{eq:kappa}
-\end{equation},
-so, \(p(x)=i\hbar\kappa(x)\).
+\end{equation}
+so that \(p(x)=i\hbar\kappa(x)\).
 
-After substitute \(p(x)=i\hbar\kappa(x)\) into the exponential term of allowed-region solution, \begin{equation}
+After substituting \(p(x)=i\hbar\kappa(x)\) into the exponential term of the allowed-region solution,
+\begin{equation}
     \exp\left[\pm\frac{i}{\hbar}\int p(x)\,dx\right]
     \longrightarrow
-    \exp\left[\mp\int\kappa(x)\,dx\right].
+    \exp\left[\mp\int\kappa(x)\,dx\right],
     \label{eq:forbidden-exponential}
-\end{equation}, we get \begin{equation}
+\end{equation}
+we obtain
+\begin{equation}
     \psi_{\mathrm{B}}(x)\approx
     \frac{1}{\sqrt{\kappa(x)}}
     \left[
@@ -182,55 +185,40 @@ After substitute \(p(x)=i\hbar\kappa(x)\) into the exponential term of allowed-r
 where constant phase factors have been absorbed into \(C\) and \(D\).
 The first term is the exponentially decaying component and the second term is the exponentially growing component. 
 
-To retain both components while determining their relative importance, define
+To compare the two components, define
 \begin{equation}
     S(x)\equiv\int_{x_1}^{x}\kappa(x')\,dx',
     \qquad
     K\equiv S(x_2)=\int_{x_1}^{x_2}\kappa(x)\,dx,
     \label{eq:barrier-action}
 \end{equation}
-where \(x_1\) and \(x_2\) are the boundaries of the classically forbidden interval. Equation~\eqref{eq:forbidden-wkb} can then be written as
+where \(x_1\) and \(x_2\) are the boundaries of the classically forbidden region. Equation~\eqref{eq:forbidden-wkb} can then be written as
 \begin{equation}
     \psi_{\mathrm{B}}(x)\approx
     \frac{1}{\sqrt{\kappa(x)}}
     \left[Ce^{-S(x)}+De^{S(x)}\right].
     \label{eq:forbidden-action}
 \end{equation}
-At \(x=x_2\), the decreasing and increasing components are proportional to \(Ce^{-K}\) and \(De^{K}\), respectively. If no wave is incident from the right, the allowed region beyond the barrier contains only the transmitted wave,
-\begin{equation}
-    \psi_{\mathrm{III}}(x)=t\,e^{ik_2(x-x_2)}.
-    \label{eq:transmitted-wave}
-\end{equation}
-Matching the wavefunction and the appropriate flux-continuity condition at \(x_2\) gives, to leading exponential order,
-\begin{equation}
-    Ce^{-K}\sim t,
-    \qquad
-    De^{K}\sim t,
-    \label{eq:right-boundary-matching}
-\end{equation}
-where \(\sim\) suppresses non-exponential factors arising from the wave vectors, effective masses, and interface matching. Dividing these relations gives
+
+Matching the wavefunction and flux-continuity conditions at \(x_2\) to an outgoing transmitted wave, with no wave incident from the right, gives, to leading exponential order,
 \begin{equation}
     \frac{D}{C}\sim e^{-2K}.
     \label{eq:growing-coefficient-suppression}
 \end{equation}
-Therefore, when \(K\gg 1\), the coefficient of the increasing component is exponentially smaller than that of the decreasing component at the barrier entrance. This does not mean that the increasing component is identically zero throughout a finite barrier; near \(x_2\), the two contributions can be of comparable order.
+Therefore, when \(K\gg1\), the increasing component is exponentially suppressed at the barrier entrance, although the two components may become comparable near \(x_2\). Since \(S(x_1)=0\), the incident amplitude is proportional to \(C\), while the transmitted amplitude is proportional to \(Ce^{-K}\). Thus,
+\[
+    \frac{A_{\mathrm{trans}}}{A_{\mathrm{inc}}}\sim e^{-K}
+\]
+up to non-exponential interface factors.
 
-At \(x=x_1\), \(S(x_1)=0\). Since \(D/C\ll 1\), the wavefunction at the entrance is dominated by \(C\), while Equation~\eqref{eq:right-boundary-matching} gives \(t\sim Ce^{-K}\). Thus, up to non-exponential interface factors,
-\begin{equation}
-    \frac{t}{A_{\mathrm{inc}}}\sim e^{-K},
-    \label{eq:transmission-amplitude}
-\end{equation}
-where \(A_{\mathrm{inc}}\) is the incident-wave amplitude. The transmission probability is defined as the ratio of transmitted to incident probability current:
-\begin{equation}
-    T\equiv\frac{j_{\mathrm{trans}}}{j_{\mathrm{inc}}}
-    \approx\mathcal{P}e^{-2K},
-    \label{eq:transmission-prefactor}
-\end{equation}
-where \(\mathcal{P}\) is a non-exponential prefactor determined by the interface matching, carrier velocities, and effective masses. If only the leading exponential dependence is retained,
+The transmission probability is the ratio of transmitted to incident probability current. Retaining only its leading exponential dependence gives
 \begin{align}
     T
-    &\approx e^{-2K}
-    =\exp\left[-2\int_{x_1}^{x_2}\kappa(x)\,dx\right]
+    &\equiv\frac{j_{\mathrm{trans}}}{j_{\mathrm{inc}}}
+    \approx e^{-2K}
+    =\exp\left[
+        -2\int_{x_1}^{x_2}\kappa(x)\,dx
+    \right]
     \label{eq:wkb-transmission-kappa}\\
     &=\exp\left[
         -\frac{2}{\hbar}
@@ -240,7 +228,7 @@ where \(\mathcal{P}\) is a non-exponential prefactor determined by the interface
     \label{eq:wkb-transmission}
 \end{align}
 \subsection{Application to a Trapezoidal Potential Barrier}
-To approximate the expression of electron transmission probability, we then do the integral within the range of forbidden region. According to Equation~\eqref{eq:trapezoidal-condition}, \(\Delta_1>0\), so \(U(x)>E\) throughout the oxide. Therefore, the forbidden interval contains the whole oxide:
+To approximate the electron transmission probability, we then evaluate the integral over the classically forbidden region. According to Equation~\eqref{eq:trapezoidal-condition}, \(\Delta_1>0\), so \(U(x)>E\) throughout the oxide. Therefore, the forbidden interval contains the whole oxide:
 \begin{equation}
     x_1=0,
     \qquad
@@ -262,7 +250,7 @@ Substituting these boundaries and Equation~\eqref{eq:trapezoidal-barrier} into E
 \end{equation}
 where \(m^*\) is assumed to remain constant throughout the oxide.
 
-Applying \(u\)-substitution,
+Using the substitution
 \begin{equation}
     u=\Delta_0-\frac{qV_{\mathrm{ox}}}{t_{\mathrm{ox}}}x,
     \qquad
@@ -287,7 +275,7 @@ the integral becomes
     \right).
     \label{eq:trapezoidal-integral}
 \end{align}
-The negative sign in Equation~\eqref{eq:trapezoidal-substitution} is removed by reversing the integration limits from \(\Delta_0\) and \(\Delta_1\) to \(\Delta_1\) and \(\Delta_0\). Then, substituting Equation~\eqref{eq:trapezoidal-integral} into the WKB approximation of \(T\) gives
+The negative sign in Equation~\eqref{eq:trapezoidal-substitution} is removed by reversing the integration limits from \(\Delta_0\) to \(\Delta_1\), giving limits from \(\Delta_1\) to \(\Delta_0\). Then, substituting Equation~\eqref{eq:trapezoidal-integral} into the WKB approximation for \(T\) gives
 \begin{equation}
     T\approx
     \exp\left[
@@ -300,7 +288,7 @@ The negative sign in Equation~\eqref{eq:trapezoidal-substitution} is removed by 
     \label{eq:trapezoidal-transmission}
 \end{equation}
 
-Since when \(\Delta_0\), \(V_{\mathrm{ox}}\), and \(m^*\) keep constant, Equation~\eqref{eq:trapezoidal-transmission} can be rewritten as
+When \(\Delta_0\), \(V_{\mathrm{ox}}\), and \(m^*\) are held constant, Equation~\eqref{eq:trapezoidal-transmission} can be rewritten as
 \begin{equation}
     \ln T=-\beta t_{\mathrm{ox}},
     \label{eq:log-transmission-thickness}
@@ -315,32 +303,33 @@ where
     \right)>0.
     \label{eq:beta}
 \end{equation}
-Thus, Equation~\eqref{eq:log-transmission-thickness} predicts that electron transmission probability \(T\) will exponentially increase as the oxide thickness decreases. Also, increasing the positive potential difference between the entrance and exit will lower \(\beta\) and thus increase transmission probability \(T\) under \(0<qV_{\mathrm{ox}}<\Delta_0\) and constant \(\Delta_0\) and \(m^*\).
+Thus, Equation~\eqref{eq:log-transmission-thickness} predicts that the electron transmission probability \(T\) increases exponentially as the oxide thickness decreases. In addition, increasing the positive potential difference between the entrance and exit lowers \(\beta\) and thus increases the transmission probability \(T\), provided that \(0<qV_{\mathrm{ox}}<\Delta_0\) and that \(\Delta_0\) and \(m^*\) remain constant.
 
 \subsection{Connection between Transmission Probability and Gate Current Density}
 
-JG is used as an experimental observable for testing the leading oxide-thickness dependence predicted for T: 
+The gate current density \(J_G\) can be regarded as a proxy for the electron transmission probability:
 \begin{align}
     J_G
-    &\equiv \frac{Q_{\mathrm{trans}}}{A\Delta t}
-    =\frac{qN_{\mathrm{trans}}}{A\Delta t}
+    &\equiv \frac{Q_{\mathrm{trans}}}{\mathcal{A}\Delta t}
+    =\frac{qN_{\mathrm{trans}}}{\mathcal{A}\Delta t}
     \notag\\
-    &=\frac{qTN_{\mathrm{inc}}}{A\Delta t}
+    &=\frac{qTN_{\mathrm{inc}}}{\mathcal{A}\Delta t}
     =q\Phi_{\mathrm{inc}}T,
     \label{eq:gate-current-flux}
 \end{align}
-where \(N_{\mathrm{trans}}=TN_{\mathrm{inc}}\) and
-\(\Phi_{\mathrm{inc}}\equiv N_{\mathrm{inc}}/(A\Delta t)\), assuming that the anti-direction tunneling is negligible. For the purpose of investigating the leading dependence on oxide thickness, the incident-electron supply is assumed to remain approximately constant across the samples. Then we can modeled \(J_G\)
+where \(N_{\mathrm{trans}}=TN_{\mathrm{inc}}\), \(\mathcal{A}\) is the cross-sectional area, \(\Delta t\) is the time interval, and
+\(\Phi_{\mathrm{inc}}\equiv N_{\mathrm{inc}}/(\mathcal{A}\Delta t)\); reverse-direction tunneling is assumed to be negligible. For the purpose of investigating the leading dependence on oxide thickness, the incident-electron supply is assumed to remain approximately constant across the samples. Then, we can model \(J_G\) as
 \begin{equation}
     J_G\approx J_0T,
     \label{eq:gate-current-proportional}
 \end{equation}
-where \(J_0\) absorbs supply-related factors. Substitute Equation~\eqref{eq:gate-current-proportional} into Equation~\eqref{eq:log-transmission-thickness},
+where \(J_0\) absorbs supply-related factors. Substituting Equation~\eqref{eq:gate-current-proportional} into Equation~\eqref{eq:log-transmission-thickness} gives
 \begin{equation}
-    \ln \left( \frac{J_G}{J_0}\right)=-\beta t_{\mathrm{ox}}.
+    \ln J_G=\ln J_0-\beta t_{\mathrm{ox}}.
     \label{eq:log-gate-current-thickness}
 \end{equation}
-\section{Published Data and Processing}
+
+\section{Experimental Data and Processing}
 
 \section{Results}
 
