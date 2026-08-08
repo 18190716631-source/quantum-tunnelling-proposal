@@ -75,13 +75,25 @@ where \(\varepsilon_{\mathrm{ox}}\) is the oxide permittivity and \(t_{\mathrm{o
 \section{Model Construction}
 
 \subsection{Model Assumptions and Barrier Definition}
-This model is constructed to determine the electron transmission probability(T). We assume that electron always move along the direction perpendicular to oxide layer linearly(1D), and we use x to show this direction. In this model, oxide thickness(tox) will be modeled as the potential barrier. Assuming the electric field is constant inside the oxide, we will apply trapezoidal barrier model to MOSFET, our research object, because electron potential energy linearly changes along with x.
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{截屏2026-08-08 08.49.07.png}
-    \caption{请GPT直接插入}
-    \label{fig:placeholder}
-\end{figure}
+This model is constructed to determine the electron transmission probability(T). We assume that electron always move along the direction perpendicular to oxide layer linearly(1D), and we use x to show this direction. In this model, oxide thickness(tox) will be modeled as the potential barrier. Assuming the electric field is constant inside the oxide, we will apply trapezoidal barrier model to MOSFET, our research object, because electron potential energy linearly changes along with x.  
+[insert 开头段落之后，引出你的模型方程：
+
+Δ(x)≡U(x)−E=Δ0−toxqVoxx,0≤x≤tox.你需要在方程后自己解释：
+
+\begin{itemize}
+    \item U(x)−E：电子在位置 x 处需要克服的有效势垒高度； 
+    \item Δ0=U(0)−E：oxide 入口处的势垒高度； 
+    \item Vox：oxide 两端的 voltage drop； 
+    \item tox：oxide thickness； 
+    \item q：elementary charge 的大小； 
+    \item x：电子穿过 oxide 的方向。 
+\end{itemize}
+然后从方程得出出口处势垒高度：
+
+Δ1=Δ(tox)=Δ0−qVox.最后指出这部分模型成立的条件：
+
+Δ1>0.因为只有这样，整个 oxide 内都有 U(x)>E，势垒才是完整的 trapezoidal barrier。如果 Δ1≤0，turning point 会出现在 oxide 内，之后的积分范围就必须改变。
+]
 \subsection{Derivation of the WKB Transmission Probability}
 To determine the electron transmission probability(T) along x-direction motion, we will start from one dimensional time-independent  Schrodinger equation.
 [Insert one-dimensional time-independent Schrödinger equation here]
