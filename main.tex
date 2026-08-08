@@ -235,13 +235,83 @@ where \(\mathcal{P}\) is a non-exponential prefactor determined by the interface
     \label{eq:wkb-transmission}
 \end{align}
 \subsection{Application to a Trapezoidal Potential Barrier}
-To approximate the expression of electron transmission probability, we then do the integral within the range of forbidden region. According to [insert Equation\~\textbackslash{}eqrefeq:trapezoidal−condition], Δ1>0, so U(x)>E throughout oxide. Therefore, forbidden interval contains the whole oxide: x1=0,x2=tox. Substitute this into [insert T approximation equation number]:[insert T≈exp[−ℏ22m∗∫0toxΔ0−toxqVoxxdx].] where m∗ is assumed to remain constant throughout the oxide.
+To approximate the expression of electron transmission probability, we then do the integral within the range of forbidden region. According to Equation~\eqref{eq:trapezoidal-condition}, \(\Delta_1>0\), so \(U(x)>E\) throughout the oxide. Therefore, the forbidden interval contains the whole oxide:
+\begin{equation}
+    x_1=0,
+    \qquad
+    x_2=t_{\mathrm{ox}}.
+    \label{eq:oxide-forbidden-interval}
+\end{equation}
+Substituting these boundaries and Equation~\eqref{eq:trapezoidal-barrier} into Equation~\eqref{eq:wkb-transmission} gives
+\begin{equation}
+    T\approx
+    \exp\left[
+        -\frac{2\sqrt{2m^*}}{\hbar}
+        \int_0^{t_{\mathrm{ox}}}
+        \sqrt{
+            \Delta_0-
+            \frac{qV_{\mathrm{ox}}}{t_{\mathrm{ox}}}x
+        }\,dx
+    \right],
+    \label{eq:trapezoidal-wkb-integral}
+\end{equation}
+where \(m^*\) is assumed to remain constant throughout the oxide.
 
-Applying u-substitution, [insert u=Δ0​−tox​qVox​​x,du=−tox​qVox​​dx.], the integral will become [insert ∫0toxΔ0−toxqVoxxdx=qVoxtox∫Δ1Δ0u1/2du=3qVox2tox(Δ03/2−Δ13/2)]
-Then substitute [insert integral equation number] into WKB approximation of T, [insert WKB formula：T≈exp[−3ℏqVox4tox2m∗(Δ03/2−Δ13/2)]] 
+Applying \(u\)-substitution,
+\begin{equation}
+    u=\Delta_0-\frac{qV_{\mathrm{ox}}}{t_{\mathrm{ox}}}x,
+    \qquad
+    du=-\frac{qV_{\mathrm{ox}}}{t_{\mathrm{ox}}}\,dx,
+    \label{eq:trapezoidal-substitution}
+\end{equation}
+the integral becomes
+\begin{align}
+    \int_0^{t_{\mathrm{ox}}}
+    \sqrt{
+        \Delta_0-
+        \frac{qV_{\mathrm{ox}}}{t_{\mathrm{ox}}}x
+    }\,dx
+    &=
+    \frac{t_{\mathrm{ox}}}{qV_{\mathrm{ox}}}
+    \int_{\Delta_1}^{\Delta_0}u^{1/2}\,du
+    \notag\\
+    &=
+    \frac{2t_{\mathrm{ox}}}{3qV_{\mathrm{ox}}}
+    \left(
+        \Delta_0^{3/2}-\Delta_1^{3/2}
+    \right).
+    \label{eq:trapezoidal-integral}
+\end{align}
+The negative sign in Equation~\eqref{eq:trapezoidal-substitution} is removed by reversing the integration limits from \(\Delta_0\) and \(\Delta_1\) to \(\Delta_1\) and \(\Delta_0\). Then, substituting Equation~\eqref{eq:trapezoidal-integral} into the WKB approximation of \(T\) gives
+\begin{equation}
+    T\approx
+    \exp\left[
+        -\frac{4t_{\mathrm{ox}}\sqrt{2m^*}}
+        {3\hbar qV_{\mathrm{ox}}}
+        \left(
+            \Delta_0^{3/2}-\Delta_1^{3/2}
+        \right)
+    \right].
+    \label{eq:trapezoidal-transmission}
+\end{equation}
 
-Since when Δ0、Vox  m∗ keep constant, [equation number of T≈exp[−3ℏqVox4tox2m∗(Δ03/2−Δ13/2)]]can be rewritten as lnT = -βtox, where β=3ℏqVox42m∗(Δ03/2−Δ13/2)>0.
-Thus, [insert number of lnT = -βtox] predict that electron transmission probability(T) will exponentially increase as the decrease of oxide thickness. Also, increase the positive potential difference between entrance and exit will lower\(\beta\) and thus increase transmission probability T under 0<qVox<Δ0 and constant Δ0 and m∗. 
+Since when \(\Delta_0\), \(V_{\mathrm{ox}}\), and \(m^*\) keep constant, Equation~\eqref{eq:trapezoidal-transmission} can be rewritten as
+\begin{equation}
+    \ln T=-\beta t_{\mathrm{ox}},
+    \label{eq:log-transmission-thickness}
+\end{equation}
+where
+\begin{equation}
+    \beta\equiv
+    \frac{4\sqrt{2m^*}}
+    {3\hbar qV_{\mathrm{ox}}}
+    \left(
+        \Delta_0^{3/2}-\Delta_1^{3/2}
+    \right)>0.
+    \label{eq:beta}
+\end{equation}
+Thus, Equation~\eqref{eq:log-transmission-thickness} predicts that electron transmission probability \(T\) will exponentially increase as the oxide thickness decreases. Also, increasing the positive potential difference between the entrance and exit will lower \(\beta\) and thus increase transmission probability \(T\) under \(0<qV_{\mathrm{ox}}<\Delta_0\) and constant \(\Delta_0\) and \(m^*\).
+
 \subsection{Connection between Transmission Probability and Gate Current Density}
 
 \section{Experimental Data and Processing}
