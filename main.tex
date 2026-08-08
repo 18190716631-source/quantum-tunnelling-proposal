@@ -23,10 +23,10 @@
 \begin{center}
     {\large\bfseries Testing a One-Dimensional Model of MOSFET Gate-Oxide Tunneling Using Published Leakage-Current Data}
 \end{center}
-%%introduction 总体太少了（最后应该是要2页多才正常），特别需要增加literature review的板块，比如。。。have been done
+
 \section{Introduction}
 Metal--oxide--semiconductor field-effect transistors (MOSFETs) are widely used as electronic switches because the voltage applied to the gate controls the conductivity of the channel. 
-When a positive gate voltage is applied to an n-channel MOSFET, it establishes an electric field across the oxide, attracting electrons toward the oxide–semiconductor interface and forming a conductive channel. The oxide electrically separates the gate from the semiconductor and ideally prevents direct charge flow, while still allowing the gate to control the channel electrostatically.
+When a positive gate voltage greater than threshold voltage is applied to an n-channel MOSFET, it establishes an electric field across the oxide, attracting electrons toward the oxide–semiconductor interface and forming a conductive channel. The oxide electrically separates the gate from the semiconductor and ideally prevents direct charge flow, while still allowing the gate to control the channel electrostatically.
 
 Reducing the oxide thickness increases the oxide capacitance, allowing the gate voltage to control the channel charge more effectively. However, at the nanometer scale, a thinner oxide also means a narrower potential barrier. Thus, the tunneling probability increases, and the gate-leakage current density increases \cite{green2001review}.
 
@@ -40,10 +40,7 @@ Research on gate-oxide tunneling developed from general insulating-film transpor
 
 As gate oxides entered the nanometer range, research shifted toward direct tunneling and its effect on oxide scaling. Schuegraf, King, and Hu (1992) identified direct tunneling as the dominant leakage mechanism in ultrathin SiO$_2$ and examined how it restricts further reduction in oxide thickness \cite{schuegraf1992}. Depas et al. (1995) analyzed current--voltage measurements from poly-Si/SiO$_2$/Si structures with oxide thicknesses between 3 and 6 nm \cite{depas1995}. By extending an analytical Fowler--Nordheim expression, they found that direct tunneling became important below approximately 4.5 nm. Their WKB model also accounted for band bending in the silicon substrate and poly-Si gate. Using the oxide electron effective mass as a fitting parameter, they showed that the model could describe both direct and Fowler--Nordheim currents quantitatively. Green et al. (2001) later reviewed the physical and electrical limits of ultrathin SiO$_2$ and Si--O--N gate dielectrics, emphasizing the practical importance of understanding how leakage current depends on oxide thickness \cite{green2001review}.
 
-Later studies increased the physical detail of gate-current models. Schenk and Heiser (1997) included image-force modification and mapped the resulting barrier onto a trapezoidal pseudobarrier with the same WKB action \cite{schenk1997}. Their analytical transmission coefficient closely matched numerical solutions of the Schr\"odinger equation and MOS-capacitor measurements for oxide thicknesses from 1.5 to 4.2 nm. Cassan et al. (1999) used carrier data from Monte Carlo simulations to calculate direct gate-tunneling current \cite{cassan1999}. Their approach shows that gate-current density depends not only on transmission probability, but also on the energy distribution and supply of incident carriers. Therefore, accurate predictions of absolute gate current require more detail than a single-energy barrier model. In contrast, the present paper uses a one-dimensional trapezoidal barrier and the WKB approximation to test whether a simplified model can reproduce the leading oxide-thickness dependence in the published gate-current-density data of Green et al. (1999) \cite{green1999limits}. The purpose is not to propose a new theory, but to evaluate the explanatory power and limitations of an accessible quantum-mechanical approximation.
-
-We will establish a model of leakage using a one-dimensional trapezoidal potential barrier by applying the Wentzel--Kramers--Brillouin (WKB) approximation and computational model with Python, evaluate the model with published \(J_G\)--\(t_{\mathrm{ox}}\) %%解释这两个东西是什么
-data \cite{green1999limits} by comparing the dependence of theoretical tunneling probability and experimental gate-leakage current density on oxide thickness, and estimate leakage-related electrical power density before discussing its possible implications for energy efficiency, thermal stability, and reliability \cite{roy2003,skadron2004}.
+We will establish a model of leakage using a one-dimensional trapezoidal potential barrier by applying the Wentzel--Kramers--Brillouin (WKB) approximation and computational model with Python, evaluate the model with published gate-leakage current density to oxide thickness(\(J_G\)--\(t_{\mathrm{ox}}\)) data \cite{green1999limits} by comparing the dependence of theoretical tunneling probability and experimental gate-leakage current density on oxide thickness, and estimate leakage-related electrical power density before discussing its possible implications for energy efficiency, thermal stability, and reliability \cite{roy2003,skadron2004}.
 
 \section{Theoretical Background}
 
@@ -58,7 +55,7 @@ The enhancement-mode n-channel metal--oxide--semiconductor field-effect transist
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.58\textwidth]{figures/mosfet-reference.png}
-    \caption{Planned four-stage operation of an enhancement-mode nMOSFET: (a) off state at \(V_{GS}=V_{DS}=0\); (b) gate-induced depletion at \(0<V_{GS}<V_T\); (c) formation of an inversion channel at \(V_{GS}>V_T\) and \(V_{DS}=0\); and (d) source--drain conduction and possible gate-oxide tunneling when \(V_{GS}>V_T\) and \(V_{DS}>0\). The current image is a temporary reference and will be replaced by a properly attributed, modified four-panel figure.}
+    \caption{Planned four-stage operation of an enhancement-mode nMOSFET}
     \label{fig:nmos-operation}
 \end{figure}
 
@@ -343,7 +340,7 @@ where \(J_0\) absorbs supply-related factors. Substitute Equation~\eqref{eq:gate
     \ln \left( \frac{J_G}{J_0}\right)=-\beta t_{\mathrm{ox}}.
     \label{eq:log-gate-current-thickness}
 \end{equation}
-\section{Experimental Data and Processing}
+\section{Published Data and Processing}
 
 \section{Results}
 
