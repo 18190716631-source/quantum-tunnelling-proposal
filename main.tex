@@ -25,8 +25,7 @@
 \end{center}
 %%introduction 总体太少了（最后应该是要2页多才正常），特别需要增加literature review的板块，比如。。。have been done
 \section{Introduction}
-Metal--oxide--semiconductor field-effect transistors (MOSFETs) are widely used as electronic switches because the voltage applied to the gate controls the conductivity of the channel. 
-When a positive gate voltage is applied to an n-channel MOSFET, it establishes an electric field across the oxide, attracting electrons toward the oxide--semiconductor interface and forming a conductive channel. The oxide electrically separates the gate from the semiconductor and ideally prevents direct charge flow, while still allowing the gate to control the channel electrostatically.
+Metal--oxide--semiconductor field-effect transistors (MOSFETs) are widely used as electronic switches because the voltage applied to the gate controls the conductivity of the channel. When a positive gate voltage greater than threshold voltage is applied to an n-channel MOSFET, it establishes an electric field across the oxide, attracting electrons toward the oxide--semiconductor interface and forming a conductive channel. The oxide electrically separates the gate from the semiconductor and ideally prevents direct charge flow, while still allowing the gate to control the channel electrostatically.
 
 Reducing the oxide thickness increases the oxide capacitance, allowing the gate voltage to control the channel charge more effectively. However, at the nanometer scale, a thinner oxide also means a narrower potential barrier. Thus, the tunneling probability increases, and the gate-leakage current density increases \cite{green2001review}.
 
@@ -40,7 +39,7 @@ Research on gate-oxide tunneling developed from general insulating-film transpor
 
 As gate oxides entered the nanometer range, research shifted toward direct tunneling and its effect on oxide scaling. Schuegraf, King, and Hu (1992) identified direct tunneling as the dominant leakage mechanism in ultrathin SiO$_2$ and examined how it restricts further reduction in oxide thickness \cite{schuegraf1992}. Depas et al. (1995) analyzed current--voltage measurements from poly-Si/SiO$_2$/Si structures with oxide thicknesses between 3 and 6 nm \cite{depas1995}. By extending an analytical Fowler--Nordheim expression, they found that direct tunneling became important below approximately 4.5 nm. Their WKB model also accounted for band bending in the silicon substrate and poly-Si gate. Using the oxide electron effective mass as a fitting parameter, they showed that the model could describe both direct and Fowler--Nordheim currents quantitatively. Green et al. (2001) later reviewed the physical and electrical limits of ultrathin SiO$_2$ and Si--O--N gate dielectrics, emphasizing the practical importance of understanding how leakage current depends on oxide thickness \cite{green2001review}.
 
-We will establish a model of leakage using a one-dimensional trapezoidal potential barrier by applying the Wentzel--Kramers--Brillouin (WKB) approximation and computational model with Python, evaluate the model with published gate-leakage current density(\(J_G\)) and oxide thickness(\(t_{\mathrm{ox}}\)) data \cite{green1999limits} by comparing the dependence of theoretical tunneling probability and experimental gate-leakage current density on oxide thickness, and estimate leakage-related electrical power density before discussing its possible implications for energy efficiency, thermal stability, and reliability \cite{roy2003,skadron2004}.
+We will establish a model of leakage using a one-dimensional trapezoidal potential barrier by applying the Wentzel--Kramers--Brillouin (WKB) approximation and computational model with Python and evaluate the model with published gate-leakage current density (\(J_G\)) and oxide thickness (\(t_{\mathrm{ox}}\)) data \cite{green1999limits} by comparing the dependence of theoretical tunneling probability and experimental gate-leakage current density on oxide thickness \cite{roy2003,skadron2004}.
 
 \section{Theoretical Background}
 
@@ -73,10 +72,6 @@ The oxide can be modeled as the dielectric in a capacitor. Its oxide capacitance
 \end{equation}
 where \(\varepsilon_{\mathrm{ox}}\) is the oxide permittivity and \(t_{\mathrm{ox}}\) is the oxide thickness \cite{taur2009}. The potential difference across the oxide is denoted by \(V_{\mathrm{ox}}\), which is not generally identical to \(V_{GS}\). Reducing \(t_{\mathrm{ox}}\) increases \(C_{\mathrm{ox}}\), thereby strengthening electrostatic control. However, under otherwise comparable material and bias conditions, the barrier width also decreases, increasing both the transmission probability \(T\) and the gate-leakage current density \(J_G\) \cite{green2001review}.
 
-\subsection{Quantum tunneling}
-
-\subsection{WKB Approximation}
-
 \section{Model Construction}
 
 \subsection{Model Assumptions and Barrier Definition}
@@ -87,7 +82,7 @@ This model is constructed to determine the electron transmission probability \(T
     \qquad 0\leq x\leq t_{\mathrm{ox}}.
     \label{eq:trapezoidal-barrier}
 \end{equation}
-Here, \(x=0\) is taken at the electron-injection interface, and positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the positive \(x\)-direction. In Equation~\eqref{eq:trapezoidal-barrier}, \(\Delta(x)=U(x)-E\) is the effective barrier energy that the electron must overcome at position \(x\); \(\Delta_0=U(0)-E\) is the barrier energy at the oxide entrance; \(V_{\mathrm{ox}}\) is the voltage drop across the oxide; \(t_{\mathrm{ox}}\) is the oxide thickness; and \(q\) is the magnitude of the elementary charge.
+Here, \(x=0\) is the position at the interface of semiconductor channel and oxide layer and \(x = t_{\text{ox}}\) is the position at the interface of gate and oxide layer. Positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the positive \(x\)-direction. In Equation~\eqref{eq:trapezoidal-barrier}, \(\Delta(x)=U(x)-E\) is the effective barrier energy that the electron must overcome at position \(x\); \(\Delta_0=U(0)-E\) is the barrier energy at the oxide entrance; \(V_{\mathrm{ox}}\) is the voltage drop across the oxide; \(t_{\mathrm{ox}}\) is the oxide thickness; and \(q\) is the magnitude of the elementary charge.
 
 At the oxide exit, the barrier energy is
 \begin{equation}
@@ -290,7 +285,7 @@ The negative sign in Equation~\eqref{eq:trapezoidal-substitution} is removed by 
 
 When \(\Delta_0\), \(V_{\mathrm{ox}}\), and \(m^*\) are held constant, Equation~\eqref{eq:trapezoidal-transmission} can be rewritten as
 \begin{equation}
-    \ln T=-\beta t_{\mathrm{ox}},
+    \ln T\approx-\beta t_{\mathrm{ox}},
     \label{eq:log-transmission-thickness}
 \end{equation}
 where
@@ -309,8 +304,8 @@ Thus, Equation~\eqref{eq:log-transmission-thickness} predicts that the electron 
 
 The gate current density \(J_G\) can be regarded as a proxy for the electron transmission probability:
 \begin{align}
-    J_G
-    &\equiv \frac{Q_{\mathrm{trans}}}{\mathcal{A}\Delta t}
+    \left|J_G\right|
+    &\equiv \frac{\left|Q_{\mathrm{trans}}\right|}{\mathcal{A}\Delta t}
     =\frac{qN_{\mathrm{trans}}}{\mathcal{A}\Delta t}
     \notag\\
     &=\frac{qTN_{\mathrm{inc}}}{\mathcal{A}\Delta t}
@@ -318,14 +313,14 @@ The gate current density \(J_G\) can be regarded as a proxy for the electron tra
     \label{eq:gate-current-flux}
 \end{align}
 where \(N_{\mathrm{trans}}=TN_{\mathrm{inc}}\), \(\mathcal{A}\) is the cross-sectional area, \(\Delta t\) is the time interval, and
-\(\Phi_{\mathrm{inc}}\equiv N_{\mathrm{inc}}/(\mathcal{A}\Delta t)\); reverse-direction tunneling is assumed to be negligible. For the purpose of investigating the leading dependence on oxide thickness, the incident-electron supply is assumed to remain approximately constant across the samples. Then, we can model \(J_G\) as
+\(\Phi_{\mathrm{inc}}\equiv N_{\mathrm{inc}}/(\mathcal{A}\Delta t)\); reverse-direction tunneling is assumed to be negligible. For the purpose of investigating the leading dependence on oxide thickness, the incident-electron supply is assumed to remain approximately constant across the samples. Then, we can write \(J_G\) as
 \begin{equation}
     J_G\approx J_0T,
     \label{eq:gate-current-proportional}
 \end{equation}
-where \(J_0\) absorbs supply-related factors. Substituting Equation~\eqref{eq:gate-current-proportional} into Equation~\eqref{eq:log-transmission-thickness} gives
+where \(J_0\) absorbs rest of  factors. Substituting Equation~\eqref{eq:gate-current-proportional} into Equation~\eqref{eq:log-transmission-thickness} gives
 \begin{equation}
-    \ln J_G=\ln J_0-\beta t_{\mathrm{ox}}.
+    \ln \left(\frac{\left|J_G\right|}{J_0}\right)\approx-\beta t_{\mathrm{ox}}.
     \label{eq:log-gate-current-thickness}
 \end{equation}
 
@@ -336,8 +331,6 @@ where \(J_0\) absorbs supply-related factors. Substituting Equation~\eqref{eq:ga
 \section{Discussion}
 
 \subsection{Comparison with Experimental Gate Leakage}
-
-\subsection{Effect of Leakage-Related Heating on MOSFET Operation}
 
 \section{Evaluation}
 
