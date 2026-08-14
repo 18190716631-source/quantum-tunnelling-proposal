@@ -82,13 +82,13 @@ This model is constructed to determine the electron transmission probability \(T
     \qquad 0\leq x\leq t_{\mathrm{ox}}.
     \label{eq:trapezoidal-barrier}
 \end{equation}
-Here, \(x=0\) is the position at the interface of semiconductor channel and oxide layer and \(x = t_{\text{ox}}\) is the position at the interface of gate and oxide layer. Positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the positive \(x\)-direction. In Equation~\eqref{eq:trapezoidal-barrier}, \(\Delta(x)=U(x)-E\) is the effective barrier energy that the electron must overcome at position \(x\); \(\Delta_0=U(0)-E\) is the barrier energy at the oxide entrance; \(V_{\mathrm{ox}}\) is the voltage drop across the oxide; \(t_{\mathrm{ox}}\) is the oxide thickness; and \(q\) is the magnitude of the elementary charge.
+Here, \(x=0\) is the oxide--substrate interface, and \(x=t_{\mathrm{ox}}\) is the gate--oxide interface. Positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the positive \(x\)-direction. In Equation~\eqref{eq:trapezoidal-barrier}, \(\Delta(x)=U(x)-E\) is the effective barrier energy that the electron must overcome at position \(x\); \(\Delta_0=U(0)-E\) is the barrier energy at the oxide--substrate interface; \(V_{\mathrm{ox}}\) is the voltage drop across the oxide; \(t_{\mathrm{ox}}\) is the oxide thickness; and \(q\) is the magnitude of the elementary charge.
 
-At the oxide exit, the barrier energy is
+At the gate--oxide interface, the barrier energy is
 \begin{equation}
     \Delta_1\equiv\Delta(t_{\mathrm{ox}})
     =\Delta_0-qV_{\mathrm{ox}}.
-    \label{eq:exit-barrier}
+    \label{eq:gate-oxide-barrier}
 \end{equation}
 The complete trapezoidal-barrier model therefore requires
 \begin{equation}
@@ -97,7 +97,7 @@ The complete trapezoidal-barrier model therefore requires
 \end{equation}
 so that \(U(x)>E\) throughout the oxide. If \(\Delta_1\leq 0\), a turning point occurs inside the oxide and the upper limit of the forbidden-region integral must be changed from \(t_{\mathrm{ox}}\) to that turning point.
 \subsection{Derivation of the WKB Transmission Probability}
-To determine the electron transmission probability \(T\) for motion along the \(x\)-direction, we start with the one-dimensional time-independent Schr\"odinger equation.
+To determine the electron transmission probability \(T\) for motion along the \(x\)-direction, we follow the standard one-dimensional WKB treatment \cite[Sec.~9.2]{griffiths2018}\cite{townsend2010}, beginning with the time-independent Schr\"odinger equation.
 \begin{equation}
     -\frac{\hbar^2}{2m^*}\frac{d^2\psi(x)}{dx^2}
     +U(x)\psi(x)=E\psi(x),
@@ -195,18 +195,13 @@ where \(x_1\) and \(x_2\) are the boundaries of the classically forbidden region
     \label{eq:forbidden-action}
 \end{equation}
 
-Matching the wavefunction and flux-continuity conditions at \(x_2\) to an outgoing transmitted wave, with no wave incident from the right, gives, to leading exponential order,
-\begin{equation}
-    \frac{D}{C}\sim e^{-2K}.
-    \label{eq:growing-coefficient-suppression}
-\end{equation}
-Therefore, when \(K\gg1\), the increasing component is exponentially suppressed at the barrier entrance, although the two components may become comparable near \(x_2\). Since \(S(x_1)=0\), the incident amplitude is proportional to \(C\), while the transmitted amplitude is proportional to \(Ce^{-K}\). Thus,
+From Equation~\eqref{eq:barrier-action}, \(S(x_1)=0\) and \(S(x_2)=K\). The standard WKB connection result therefore gives, to leading exponential order,
 \[
-    \frac{A_{\mathrm{trans}}}{A_{\mathrm{inc}}}\sim e^{-K}
+    \frac{A_{\mathrm{trans}}}{A_{\mathrm{inc}}}\sim e^{-K},
 \]
 up to non-exponential interface factors.
 
-The transmission probability is the ratio of transmitted to incident probability current. Retaining only its leading exponential dependence gives
+The transmission probability is the ratio of transmitted to incident probability current. Retaining only its leading exponential dependence gives the standard WKB transmission expression \cite[Sec.~9.2]{griffiths2018}:
 \begin{align}
     T
     &\equiv\frac{j_{\mathrm{trans}}}{j_{\mathrm{inc}}}
@@ -282,6 +277,7 @@ The negative sign in Equation~\eqref{eq:trapezoidal-substitution} is removed by 
     \right].
     \label{eq:trapezoidal-transmission}
 \end{equation}
+As a consistency check, Equation~\eqref{eq:trapezoidal-transmission} gives \(T\to1\) as \(t_{\mathrm{ox}}\to0\) and \(T\to0\) as \(t_{\mathrm{ox}}\to\infty\), with the other barrier parameters held constant. Although the WKB approximation is not valid at exactly zero barrier width, these formal limits agree with physical intuition.
 
 When \(\Delta_0\), \(V_{\mathrm{ox}}\), and \(m^*\) are held constant, Equation~\eqref{eq:trapezoidal-transmission} can be rewritten as
 \begin{equation}
@@ -298,11 +294,11 @@ where
     \right)>0.
     \label{eq:beta}
 \end{equation}
-Thus, Equation~\eqref{eq:log-transmission-thickness} predicts that the electron transmission probability \(T\) increases exponentially as the oxide thickness decreases. In addition, increasing the positive potential difference between the entrance and exit lowers \(\beta\) and thus increases the transmission probability \(T\), provided that \(0<qV_{\mathrm{ox}}<\Delta_0\) and that \(\Delta_0\) and \(m^*\) remain constant.
+Thus, Equation~\eqref{eq:log-transmission-thickness} predicts that the electron transmission probability \(T\) increases exponentially as the oxide thickness decreases. In addition, increasing \(V_{\mathrm{ox}}\), the positive potential difference across the oxide, lowers \(\beta\) and thus increases the transmission probability \(T\), provided that \(0<qV_{\mathrm{ox}}<\Delta_0\) and that \(\Delta_0\) and \(m^*\) remain constant.
 
 \subsection{Connection between Transmission Probability and Gate Current Density}
 
-The gate current density \(J_G\) can be regarded as a proxy for the electron transmission probability:
+The magnitude of the gate current density \(\left|J_G\right|\) can be related to the electron transmission probability:
 \begin{align}
     \left|J_G\right|
     &\equiv \frac{\left|Q_{\mathrm{trans}}\right|}{\mathcal{A}\Delta t}
@@ -312,13 +308,12 @@ The gate current density \(J_G\) can be regarded as a proxy for the electron tra
     =q\Phi_{\mathrm{inc}}T,
     \label{eq:gate-current-flux}
 \end{align}
-where \(N_{\mathrm{trans}}=TN_{\mathrm{inc}}\), \(\mathcal{A}\) is the cross-sectional area, \(\Delta t\) is the time interval, and
-\(\Phi_{\mathrm{inc}}\equiv N_{\mathrm{inc}}/(\mathcal{A}\Delta t)\); reverse-direction tunneling is assumed to be negligible. For the purpose of investigating the leading dependence on oxide thickness, the incident-electron supply is assumed to remain approximately constant across the samples. Then, we can write \(J_G\) as
+Here, \(\left|Q_{\mathrm{trans}}\right|\) is the magnitude of the charge transmitted through the oxide during the time interval \(\Delta t\), and \(N_{\mathrm{trans}}\) is the corresponding number of transmitted electrons. The quantity \(N_{\mathrm{inc}}\) is the number of electrons incident on the oxide--substrate interface over the area \(\mathcal{A}\) during the same interval, so \(N_{\mathrm{trans}}=TN_{\mathrm{inc}}\) and \(\Phi_{\mathrm{inc}}\equiv N_{\mathrm{inc}}/(\mathcal{A}\Delta t)\). Reverse-direction tunneling is assumed to be negligible. For the purpose of investigating the leading dependence on oxide thickness, the incident-electron supply is assumed to remain approximately constant across the samples. Then, we can write \(\left|J_G\right|\) as
 \begin{equation}
-    J_G\approx J_0T,
+    \left|J_G\right|\approx J_0T,
     \label{eq:gate-current-proportional}
 \end{equation}
-where \(J_0\) absorbs rest of  factors. Substituting Equation~\eqref{eq:gate-current-proportional} into Equation~\eqref{eq:log-transmission-thickness} gives
+where \(J_0\) absorbs the remaining non-exponential factors. Substituting Equation~\eqref{eq:gate-current-proportional} into Equation~\eqref{eq:log-transmission-thickness} gives
 \begin{equation}
     \ln \left(\frac{\left|J_G\right|}{J_0}\right)\approx-\beta t_{\mathrm{ox}}.
     \label{eq:log-gate-current-thickness}
