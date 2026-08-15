@@ -532,17 +532,12 @@ The fitted logarithmic slope also quantifies the sensitivity of gate leakage to 
     0.197~\mathrm{nm}.
 \end{equation}
 Thus, increasing the oxide thickness by approximately \(0.197~\mathrm{nm}\) corresponds to a tenfold decrease in gate current density. This result demonstrates why very small variations in an ultrathin oxide can produce large changes in gate leakage: the barrier width appears in the exponent of the WKB transmission probability.
-
-Despite the high value of \(R^2\), the linear model does not describe all seven data points perfectly. The residuals show a systematic U-shaped pattern: the values at the thinnest and thickest oxides lie above the fitted line, whereas most intermediate-thickness values lie below it. Therefore, the fitted line underestimates \(\ln |J_G|\) at the two ends of the investigated range and overestimates it in the middle. The absolute residuals, approximately \(0.38\) to \(1.89\), are also substantially larger than the digitization standard deviations of approximately \(0.02\) to \(0.06\). This suggests that the curvature is unlikely to result solely from the repeatability of manual point selection. However, because the original experimental uncertainties are not reported, its statistical significance and physical origin cannot be determined from the available data. The experimental relationship is therefore approximately exponential, but a single constant logarithmic slope does not capture its entire thickness dependence.
+ 
+Despite the high value of \(R^2\), the linear model does not describe all seven data points perfectly. In Figure\ref{fig:experimental-linear-fit}, the residuals show a systematic U-shaped pattern: the values at the thinnest and thickest oxides lie above the fitted line, whereas most intermediate-thickness values lie below it. Therefore, the fitted line underestimates \(\ln |J_G|\) at the two ends of the investigated range and overestimates it in the middle. The absolute residuals, approximately \(0.38\) to \(1.89\), are also substantially larger than the digitization standard deviations of approximately \(0.02\) to \(0.06\). This suggests that the curvature is unlikely to result solely from the repeatability of manual point selection. Therefore, although the experimental relationship is approximately exponential, a single constant logarithmic slope does not capture its entire thickness dependence.
 
 \section{Evaluation}
 
 \section{Conclusion}
-
-\appendix
-\section{Python Code}
-
-\section{Additional Data and Calculations}
 
 \newpage
 \IfFileExists{IEEEtran.bst}{\bibliographystyle{IEEEtran}}{\bibliographystyle{unsrt}}
