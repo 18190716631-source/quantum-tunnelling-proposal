@@ -370,7 +370,7 @@ To test the oxide-thickness dependence predicted by Equation~\eqref{eq:log-gate-
 
 \subsection{Data Digitization and Processing}
 
-Because the numerical values are presented graphically rather than in a table, we extracted the coordinates from the original published figure using WebPlotDigitizer \\cite{rohatgiWebPlotDigitizer}. The horizontal axis was calibrated as a linear scale from \(0.4\) to \(3.2~\mathrm{nm}\), while the vertical axis was calibrated as a logarithmic scale from \(10^{-10}\) to \(10^{5}~\mathrm{A\,cm^{-2}}\). We then manually selected the centers of the seven circular data markers. This extraction was repeated independently three times to estimate the uncertainty associated with axis calibration and manual point selection. Figure~\ref{fig:reconstructed-gate-leakage} displays the resulting mean coordinates.
+Because the numerical values are presented graphically rather than in a table, we extracted the coordinates from the original published figure using WebPlotDigitizer \cite{rohatgiWebPlotDigitizer}. The horizontal axis was calibrated as a linear scale from \(0.4\) to \(3.2~\mathrm{nm}\), while the vertical axis was calibrated as a logarithmic scale from \(10^{-10}\) to \(10^{5}~\mathrm{A\,cm^{-2}}\). We then manually selected the centers of the seven circular data markers. This extraction was repeated independently three times to estimate the uncertainty associated with axis calibration and manual point selection. Figure~\ref{fig:reconstructed-gate-leakage} displays the resulting mean coordinates.
 
 For each data point \(i\), the three oxide-thickness readings were combined using their arithmetic mean. Because \(\left|J_G\right|\) spans more than twelve orders of magnitude, the current-density readings were first transformed as
 \begin{equation}
@@ -438,6 +438,84 @@ The standard deviations in Table~\ref{tab:digitized-gate-leakage} describe only 
 where \(a\) is the fitted intercept and \(\beta_{\mathrm{exp}}\) is the magnitude of the experimental logarithmic slope. An ordinary least-squares regression was applied to the processed data in Table~\ref{tab:digitized-gate-leakage}. The fitted coefficients and coefficient of determination \(R^2\) are reported in the following section.
 
 \section{Results}
+
+\subsection{Experimental Linear Regression}
+
+Figure~\ref{fig:experimental-linear-fit} shows the processed logarithmic current-density values plotted against oxide thickness, together with the ordinary least-squares best-fit line. The horizontal and vertical error bars represent the sample standard deviations among the three digitization runs reported in Table~\ref{tab:digitized-gate-leakage}.
+
+\begin{figure}[H]
+    \begin{singlespace}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.88\textwidth,
+                height=0.58\textwidth,
+                xmin=0.5,
+                xmax=3.2,
+                ymin=-22,
+                ymax=12,
+                xlabel={Mean oxide thickness, \(\bar{t}_{\mathrm{ox}}\) (nm)},
+                ylabel={\(\bar{y}=\ln\!\left(\left|J_G\right|/J_{\mathrm{ref}}\right)\)},
+                grid=major,
+                major grid style={gray!25},
+                tick label style={font=\small},
+                label style={font=\small},
+                legend style={font=\small,draw=none,at={(0.03,0.03)},anchor=south west},
+            ]
+                \addplot+[
+                    only marks,
+                    mark=*,
+                    mark size=2.4pt,
+                    black,
+                    error bars/.cd,
+                    x dir=both,
+                    x explicit,
+                    y dir=both,
+                    y explicit,
+                ] table[row sep=\\,x=tox,y=y,x error=st,y error=sy] {
+                    tox    st      y        sy \\
+                    0.6187 0.0043  10.137   0.054 \\
+                    1.0994 0.0010   3.430   0.024 \\
+                    1.3999 0.0023  -1.217   0.050 \\
+                    1.4984 0.0015  -3.237   0.059 \\
+                    1.7988 0.0021  -6.955   0.049 \\
+                    1.9983 0.0021  -9.219   0.028 \\
+                    3.0990 0.0019 -18.802   0.020 \\
+                };
+                \addlegendentry{Processed data}
+
+                \addplot[
+                    blue,
+                    thick,
+                    domain=0.5:3.2,
+                    samples=2,
+                ] {15.522 - 11.684*x};
+                \addlegendentry{Best-fit line}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Linearized gate-current-density data and the ordinary least-squares best-fit line. The error bars show the repeatability of the digitization procedure and do not represent the uncertainty of the original measurements.}
+        \label{fig:experimental-linear-fit}
+    \end{singlespace}
+\end{figure}
+
+The regression gives
+\begin{equation}
+    \bar{y}
+    =15.522-
+    \left(11.684~\mathrm{nm^{-1}}\right)
+    \bar{t}_{\mathrm{ox}}.
+    \label{eq:experimental-fit-result}
+\end{equation}
+Therefore, the fitted parameters in Equation~\eqref{eq:experimental-linear-fit} are
+\begin{equation}
+    a=15.522,
+    \qquad
+    \beta_{\mathrm{exp}}=11.684~\mathrm{nm^{-1}},
+\end{equation}
+with a coefficient of determination of
+\begin{equation}
+    R^2=0.9743.
+\end{equation}
 
 \section{Discussion}
 
