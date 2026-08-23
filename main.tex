@@ -552,7 +552,69 @@ The fitted logarithmic slope also quantifies the sensitivity of gate leakage to 
 \end{equation}
 Thus, increasing the oxide thickness by approximately \(0.197~\mathrm{nm}\) corresponds to a tenfold decrease in gate current density. This result demonstrates why very small variations in an ultrathin oxide can produce large changes in gate leakage: the barrier width appears in the exponent of the WKB transmission probability.
  
-Despite the high value of \(R^2\), the linear model does not describe all seven data points perfectly. In Figure\ref{fig:experimental-linear-fit}, the residuals show a systematic U-shaped pattern: the values at the thinnest and thickest oxides lie above the fitted line, whereas most intermediate-thickness values lie below it. Therefore, the fitted line underestimates \(\ln |J_G|\) at the two ends of the investigated range and overestimates it in the middle. The absolute residuals, approximately \(0.38\) to \(1.89\), are also substantially larger than the digitization standard deviations of approximately \(0.02\) to \(0.06\). This suggests that the curvature is unlikely to result solely from the repeatability of manual point selection. Therefore, although the experimental relationship is approximately exponential, a single constant logarithmic slope does not capture its entire thickness dependence.
+Despite the high value of \(R^2\), the linear model does not describe all seven data points perfectly. To examine whether the deviations from the fitted line are randomly distributed, we define the residual for point \(i\) as
+\begin{equation}
+    r_i
+    \equiv
+    \bar{y}_i-\hat{y}_i
+    =
+    \bar{y}_i-
+    \left(
+        a-\beta_{\mathrm{exp}}\bar{t}_i
+    \right),
+    \label{eq:experimental-residual}
+\end{equation}
+where \(\bar{y}_i\) is the observed logarithmic current density and \(\hat{y}_i\) is the value predicted by Equation~\eqref{eq:experimental-fit-result}. A positive residual therefore indicates that the observed value lies above the fitted line, whereas a negative residual indicates that it lies below the line.
+
+\begin{figure}[H]
+    \begin{singlespace}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.88\textwidth,
+                height=0.50\textwidth,
+                xmin=0.5,
+                xmax=3.2,
+                ymin=-2.2,
+                ymax=2.2,
+                xlabel={Mean oxide thickness, \(\bar{t}_{\mathrm{ox}}\) (nm)},
+                ylabel={Residual, \(r_i=\bar{y}_i-\hat{y}_i\)},
+                grid=major,
+                major grid style={gray!25},
+                tick label style={font=\small},
+                label style={font=\small},
+            ]
+                \addplot[
+                    gray,
+                    dashed,
+                    thick,
+                    domain=0.5:3.2,
+                    samples=2,
+                ] {0};
+
+                \addplot[
+                    only marks,
+                    mark=*,
+                    mark size=2.4pt,
+                    black,
+                ] table[row sep=\\,x=tox,y=residual] {
+                    tox    residual \\
+                    0.6187  1.844 \\
+                    1.0994  0.753 \\
+                    1.3999 -0.383 \\
+                    1.4984 -1.252 \\
+                    1.7988 -1.460 \\
+                    1.9983 -1.393 \\
+                    3.0990  1.885 \\
+                };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Residuals of the ordinary least-squares fit in Equation~\eqref{eq:experimental-fit-result}. The dashed horizontal line represents zero residual. The plotted values use the convention \(r_i=\bar{y}_i-\hat{y}_i\), so points above the line have larger logarithmic current densities than predicted by the fitted model.}
+        \label{fig:experimental-residuals}
+    \end{singlespace}
+\end{figure}
+
+Figure~\ref{fig:experimental-residuals} shows a broadly U-shaped pattern: the first two and final residuals are positive, whereas the four central residuals are negative. Thus, the constant-slope model tends to underestimate \(\ln|J_G|\) near the lower and upper ends of the investigated thickness range and overestimate it over the central range. The absolute residuals, approximately \(0.383\) to \(1.885\), are also substantially larger than the digitization standard deviations of approximately \(0.020\) to \(0.059\). This comparison suggests that the observed pattern is unlikely to result solely from the repeatability of manual point selection. However, the digitization standard deviations do not include the experimental uncertainty of the original measurements. In addition, the dataset contains only seven points, and the thickest-oxide point is separated from the other thicknesses by more than \(1~\mathrm{nm}\). Therefore, the residual plot provides evidence of possible systematic curvature, but it does not by itself establish the functional form or physical cause of the deviation.
 
 \section{Evaluation}
 
