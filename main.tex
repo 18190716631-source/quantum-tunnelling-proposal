@@ -13,6 +13,7 @@
 \usepackage{booktabs}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
 \usepackage{cite}
 \usepackage[hidelinks]{hyperref}
 
@@ -615,6 +616,202 @@ where \(\bar{y}_i\) is the observed logarithmic current density and \(\hat{y}_i\
 \end{figure}
 
 Figure~\ref{fig:experimental-residuals} shows a broadly U-shaped pattern: the first two and final residuals are positive, whereas the four central residuals are negative. Thus, the constant-slope model tends to underestimate \(\ln|J_G|\) near the lower and upper ends of the investigated thickness range and overestimate it over the central range. The absolute residuals, approximately \(0.383\) to \(1.885\), are also substantially larger than the digitization standard deviations of approximately \(0.020\) to \(0.059\). This comparison suggests that the observed pattern is unlikely to result solely from the repeatability of manual point selection. However, the digitization standard deviations do not include the experimental uncertainty of the original measurements. In addition, the dataset contains only seven points, and the thickest-oxide point is separated from the other thicknesses by more than \(1~\mathrm{nm}\). Therefore, the residual plot provides evidence of possible systematic curvature, but it does not by itself establish the functional form or physical cause of the deviation.
+
+
+\subsection{Voltage-Dependent Validation of the Trapezoidal-Barrier Model}
+
+The preceding comparison with the Green dataset tests the predicted exponential dependence on oxide thickness, but this functional form is not unique to a trapezoidal barrier. A fixed rectangular barrier also gives an expression of the form \(\ln |J_G|=a-\beta t_{\mathrm{ox}}\). For a rectangular barrier with constant height \(\Delta_{\mathrm{H}}\) and constant effective mass, its logarithmic decay coefficient is
+\begin{equation}
+    \beta_{\mathrm{rect}}
+    =
+    \frac{2\sqrt{2m^*\Delta_{\mathrm{H}}}}{\hbar},
+    \label{eq:rectangular-beta}
+\end{equation}
+which is independent of the applied voltage. By contrast, the trapezoidal barrier becomes more strongly tilted as the magnitude of the oxide voltage increases, so Equation~\eqref{eq:beta} predicts that the decay coefficient decreases. The voltage dependence of the experimental slope therefore provides a second test that can distinguish the trapezoidal model from a fixed rectangular one.
+
+Khairurrijal et al. reported measured direct-tunneling current densities for phosphorus-doped \(n^+\) poly-Si-gate MOS capacitors with oxide thicknesses of \(1.65\), \(2.17\), \(2.51\), \(2.80\), \(3.50\), and \(3.90~\mathrm{nm}\) \cite{khairurrijal2000}. Their measurements were made at room temperature under negative gate bias, and the oxide voltage was obtained from capacitance--voltage measurements after corrections for the flat-band voltage and substrate surface potential. Because this bias reverses the injection direction relative to the positive-bias nMOSFET convention used earlier, we use the magnitude \(\lvert V_{\mathrm{ox}}\rvert\). Reversing the coordinate direction does not change the WKB action across the same barrier.
+
+Only the measured markers in Figure~3 of Khairurrijal et al. were used; the authors' calculated curves were not digitized. At the nominal oxide-voltage magnitudes \(1.0\), \(1.5\), \(2.0\), and \(2.5~\mathrm{V}\), the six current-density values were independently digitized three times using WebPlotDigitizer \cite{rohatgiWebPlotDigitizer}. Because the vertical axis is logarithmic, the three readings were averaged in \(\ln |J|\) space. At each fixed voltage, an ordinary least-squares regression was then performed in the form
+\begin{equation}
+    \overline{\ln\left(|J|/J_{\mathrm{ref}}\right)}
+    =
+    a(V_{\mathrm{ox}})
+    -
+    \beta_{\mathrm{exp}}(V_{\mathrm{ox}})t_{\mathrm{ox}},
+    \qquad
+    J_{\mathrm{ref}}=1~\mathrm{A\,cm^{-2}}.
+    \label{eq:khairurrijal-fixed-voltage-fit}
+\end{equation}
+A separate intercept \(a(V_{\mathrm{ox}})\) was allowed at each voltage because the incident-electron supply and other non-exponential factors can change with voltage. The comparison therefore focuses on the fitted slope \(\beta_{\mathrm{exp}}\).
+
+\begin{table}[H]
+    \begin{singlespace}
+        \centering
+        \caption{Fixed-voltage regressions obtained from the six oxide thicknesses reported by Khairurrijal et al. The quantity \(s_{\beta}\) is the sample standard deviation of the fitted slopes from the three independent digitizations; it represents digitization repeatability rather than the uncertainty of the original measurements.}
+        \label{tab:khairurrijal-fixed-voltage-fits}
+        \begin{tabular}{cccc}
+            \toprule
+            \(\lvert V_{\mathrm{ox}}\rvert\) (\(\mathrm{V}\))
+            & \(\beta_{\mathrm{exp}}\) (\(\mathrm{nm^{-1}}\))
+            & \(s_{\beta}\) (\(\mathrm{nm^{-1}}\))
+            & \(R^2\) \\
+            \midrule
+            1.0 & 8.331 & 0.019 & 0.9871 \\
+            1.5 & 8.124 & 0.012 & 0.9872 \\
+            2.0 & 7.861 & 0.006 & 0.9862 \\
+            2.5 & 7.522 & 0.014 & 0.9844 \\
+            \bottomrule
+        \end{tabular}
+    \end{singlespace}
+\end{table}
+
+The \(R^2\) values between \(0.9844\) and \(0.9872\) show that the approximate exponential thickness dependence is present at all four voltages. More importantly, \(\beta_{\mathrm{exp}}\) decreases monotonically from \(8.331\) to \(7.522~\mathrm{nm^{-1}}\) as \(\lvert V_{\mathrm{ox}}\rvert\) increases from \(1.0\) to \(2.5~\mathrm{V}\). This voltage-dependent change, rather than the high \(R^2\) values alone, is the feature that can distinguish the two barrier models.
+
+An absolute comparison between the experimental and theoretical decay coefficients would require an independently known oxide effective mass. In the Khairurrijal model, however, the oxide effective mass and the gate Fermi energy were fitting parameters, and the fitted effective mass also varied with oxide thickness \cite{khairurrijal2000}. To reduce the dependence on the unknown mass, we normalize each decay coefficient to the value at
+\[
+    V_{\mathrm{ref}}=1.5~\mathrm{V}.
+\]
+The experimental and theoretical ratios are defined as
+\begin{equation}
+    R_{\mathrm{exp}}(V)
+    =
+    \frac{\beta_{\mathrm{exp}}(V)}
+    {\beta_{\mathrm{exp}}(V_{\mathrm{ref}})},
+    \qquad
+    R_{\mathrm{trap}}(V)
+    =
+    \frac{\beta_{\mathrm{trap}}(V)}
+    {\beta_{\mathrm{trap}}(V_{\mathrm{ref}})}.
+    \label{eq:normalized-decay-coefficients}
+\end{equation}
+For the trapezoidal barrier, the decay coefficient can be written using the high-side barrier energy \(\Delta_{\mathrm{H}}\) as
+\begin{equation}
+    \beta_{\mathrm{trap}}(V)
+    =
+    \frac{4\sqrt{2m^*}}
+    {3\hbar q\lvert V\rvert}
+    \left[
+        \Delta_{\mathrm{H}}^{3/2}
+        -
+        \left(\Delta_{\mathrm{H}}-q\lvert V\rvert\right)^{3/2}
+    \right].
+    \label{eq:khairurrijal-trapezoidal-beta}
+\end{equation}
+The factor \(\sqrt{m^*}\) cancels exactly from \(R_{\mathrm{trap}}\), provided that \(m^*\) is treated as voltage-independent within the simplified model. Khairurrijal et al. used a measured conduction-band alignment of \(3.34~\mathrm{eV}\) and independently estimated central values of the gate Fermi energy of \(0.05\) and \(0.20~\mathrm{eV}\) \cite{khairurrijal2000}. Since their barrier height is \(3.34~\mathrm{eV}-E_F\), these central estimates give \(\Delta_{\mathrm{H}}=3.29\) and \(3.14~\mathrm{eV}\), respectively. These two values define the trapezoidal prediction range shown in Figure~\ref{fig:normalized-decay-coefficient}. The complete-trapezoid condition \(q\lvert V_{\mathrm{ox}}\rvert<\Delta_{\mathrm{H}}\) remains satisfied at all four selected voltages.
+
+\begin{figure}[H]
+    \begin{singlespace}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.88\textwidth,
+                height=0.56\textwidth,
+                xmin=0.9,
+                xmax=2.6,
+                ymin=0.84,
+                ymax=1.08,
+                xtick={1.0,1.5,2.0,2.5},
+                ytick={0.85,0.90,0.95,1.00,1.05},
+                xlabel={Oxide-voltage magnitude, \(\lvert V_{\mathrm{ox}}\rvert\) (\(\mathrm{V}\))},
+                ylabel={Normalized decay coefficient, \(R(V)\)},
+                grid=major,
+                major grid style={gray!25},
+                tick label style={font=\small},
+                label style={font=\small},
+                legend style={
+                    font=\scriptsize,
+                    at={(0.02,0.02)},
+                    anchor=south west,
+                    fill=white,
+                    draw=gray!40
+                },
+            ]
+                \addplot[
+                    name path=traplower,
+                    draw=none,
+                    forget plot
+                ] coordinates {
+                    (1.0,1.0505)
+                    (1.5,1.0000)
+                    (2.0,0.9412)
+                    (2.5,0.8751)
+                };
+                \addplot[
+                    name path=trapupper,
+                    draw=none,
+                    forget plot
+                ] coordinates {
+                    (1.0,1.0538)
+                    (1.5,1.0000)
+                    (2.0,0.9452)
+                    (2.5,0.8843)
+                };
+                \addplot[
+                    blue!20,
+                    draw=none
+                ] fill between[
+                    of=traplower and trapupper
+                ];
+                \addlegendentry{Trapezoidal range}
+
+                \addplot[
+                    blue,
+                    thick,
+                    forget plot
+                ] coordinates {
+                    (1.0,1.0521)
+                    (1.5,1.0000)
+                    (2.0,0.9433)
+                    (2.5,0.8799)
+                };
+
+                \addplot[
+                    gray!70!black,
+                    dashed,
+                    thick
+                ] coordinates {
+                    (1.0,1.0000)
+                    (2.5,1.0000)
+                };
+                \addlegendentry{Fixed rectangular barrier}
+
+                \addplot[
+                    black,
+                    thick,
+                    mark=*,
+                    mark size=2.4pt
+                ] coordinates {
+                    (1.0,1.0255)
+                    (1.5,1.0000)
+                    (2.0,0.9676)
+                    (2.5,0.9258)
+                };
+                \addlegendentry{All six oxides}
+
+                \addplot[
+                    red!70!black,
+                    thick,
+                    mark=square*,
+                    mark size=2.5pt
+                ] coordinates {
+                    (1.0,1.0361)
+                    (1.5,1.0000)
+                    (2.0,0.9520)
+                    (2.5,0.8852)
+                };
+                \addlegendentry{Same-growth \(t_{\mathrm{ox}}<3~\mathrm{nm}\)}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Normalized experimental decay coefficients compared with the predictions of a fixed rectangular barrier and the trapezoidal WKB model. The blue range uses \(\Delta_{\mathrm{H}}=3.14\)--\(3.29~\mathrm{eV}\), obtained from the two independently estimated central Fermi-energy values reported by Khairurrijal et al. The black series uses all six oxide thicknesses. The red series is a sensitivity check using only the four oxides below \(3~\mathrm{nm}\), which were produced using the same reported growth conditions.}
+        \label{fig:normalized-decay-coefficient}
+    \end{singlespace}
+\end{figure}
+
+For all six oxides, the experimental ratios are \(1.0255\), \(1.0000\), \(0.9676\), and \(0.9258\), whereas a fixed rectangular barrier predicts \(R_{\mathrm{rect}}=1\) at every voltage. The experimental change has the same direction as the trapezoidal prediction, although its magnitude is smaller. Using the midpoint \(\Delta_{\mathrm{H}}=3.215~\mathrm{eV}\), the descriptive root-mean-square difference between the four experimental ratios and the trapezoidal prediction is \(0.029\), compared with \(0.042\) for the fixed rectangular prediction.
+
+Khairurrijal et al. reported that the oxides thinner than \(3~\mathrm{nm}\) were grown in \(2\%\) O\(_2\) diluted with N\(_2\), whereas those thicker than \(3~\mathrm{nm}\) were grown in \(100\%\) dry O\(_2\) \cite{khairurrijal2000}. Because this fabrication difference could affect the thickness comparison, the regression was repeated using only the \(1.65\), \(2.17\), \(2.51\), and \(2.80~\mathrm{nm}\) oxides. This subset was defined from the reported growth conditions rather than from the regression residuals. It gives normalized coefficients of \(1.0361\), \(1.0000\), \(0.9520\), and \(0.8852\). For the same midpoint barrier height, the root-mean-square difference is \(0.010\) from the trapezoidal prediction and \(0.065\) from the rectangular prediction. The voltage-dependent decrease therefore remains when the fabrication method is held more nearly constant, although the smaller subset contains only four thicknesses.
+
+These results do not prove that the physical barrier is exactly trapezoidal. The original point-by-point experimental uncertainties are unavailable, so the small spread among repeated digitizations cannot be interpreted as the total measurement uncertainty. In addition, Khairurrijal et al. found a thickness-dependent fitted effective mass and obtained better agreement using a nonparabolic oxide dispersion relation than using a parabolic one \cite{khairurrijal2000}. Their devices were also MOS capacitors under negative gate bias rather than the positively biased nMOSFET configuration introduced in this paper. Nevertheless, the observed decrease of the experimental decay coefficient with oxide voltage is more consistent with the trapezoidal-barrier prediction than with a fixed rectangular barrier. The Green dataset therefore provides the first validation of the approximate exponential thickness dependence, while the Khairurrijal dataset supplies a complementary second validation based on the voltage dependence of that exponential decay.
 
 \section{Evaluation}
 
