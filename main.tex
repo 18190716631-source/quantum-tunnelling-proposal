@@ -55,7 +55,7 @@ The enhancement-mode n-channel metal--oxide--semiconductor field-effect transist
 % formation, and (d) source--drain conduction plus gate-oxide tunneling.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.58\textwidth]{figures/mosfet-reference.png}
+    \includegraphics[width=0.90\textwidth]{figures/mosfet-reference.png}
     \caption{Planned four-stage operation of an enhancement-mode nMOSFET: (a) off state at \(V_{GS}=V_{DS}=0\); (b) gate-induced depletion at \(0<V_{GS}<V_T\); (c) formation of an inversion channel at \(V_{GS}>V_T\) and \(V_{DS}=0\); and (d) source--drain conduction and possible gate-oxide tunneling when \(V_{GS}>V_T\) and \(V_{DS}>0\). The current image is a temporary reference and will be replaced by a properly attributed, modified four-panel figure.}
     \label{fig:nmos-operation}
 \end{figure}
@@ -77,27 +77,46 @@ where \(\varepsilon_{\mathrm{ox}}\) is the oxide permittivity and \(t_{\mathrm{o
 \section{Model Construction}
 
 \subsection{Model Assumptions and Barrier Definition}
-This model is constructed to determine the electron transmission probability \(T\). We assume that electron motion is one-dimensional and perpendicular to the oxide layer, and we use \(x\) to represent this direction. In this model, the oxide thickness \(t_{\mathrm{ox}}\) will be modeled as the width of the potential barrier. Assuming that the electric field is constant inside the oxide, we will apply a trapezoidal-barrier model to the MOSFET because the electron potential energy varies linearly with \(x\).  
+
+This model is constructed to determine the electron transmission probability \(T\). Electron motion is assumed to be one-dimensional and perpendicular to the oxide layer, with \(x\) representing this direction. The oxide thickness \(t_{\mathrm{ox}}\) is therefore modeled as the width of the potential barrier. Assuming that the electric field is approximately uniform inside the oxide, the electron potential energy varies linearly with position, so the oxide barrier is approximated as trapezoidal:
+
 \begin{equation}
     \Delta(x)\equiv U(x)-E
     =\Delta_0-\frac{qV_{\mathrm{ox}}}{t_{\mathrm{ox}}}x,
     \qquad 0\leq x\leq t_{\mathrm{ox}}.
     \label{eq:trapezoidal-barrier}
 \end{equation}
-Here, \(x=0\) is the oxide--substrate interface, and \(x=t_{\mathrm{ox}}\) is the gate--oxide interface. Positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the positive \(x\)-direction. In Equation~\eqref{eq:trapezoidal-barrier}, \(\Delta(x)=U(x)-E\) is the effective barrier energy that the electron must overcome at position \(x\); \(\Delta_0=U(0)-E\) is the barrier energy at the oxide--substrate interface; \(V_{\mathrm{ox}}\) is the voltage drop across the oxide; \(t_{\mathrm{ox}}\) is the oxide thickness; and \(q\) is the magnitude of the elementary charge.
+
+Here, \(x=0\) is the oxide--substrate interface and \(x=t_{\mathrm{ox}}\) is the gate--oxide interface. Positive \(V_{\mathrm{ox}}\) is defined such that the electron potential energy decreases along the positive \(x\)-direction. The quantity
+\(\Delta(x)=U(x)-E\) represents the local barrier energy relative to the electron energy \(E\), while
+\(\Delta_0=U(0)-E\) is the barrier energy at the oxide--substrate interface.
+
+Figure~\ref{fig:trapezoidal-model} illustrates this one-dimensional potential-energy profile. The applied oxide voltage tilts the barrier so that \(U(x)\) decreases approximately linearly across the oxide. The horizontal line represents the electron energy \(E\). In the trapezoidal case considered here, the barrier remains above \(E\) throughout the oxide, so the entire interval from \(x=0\) to \(x=t_{\mathrm{ox}}\) is classically forbidden.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.80\linewidth]{figures/Trapezoidal Model.png}
+    \caption{One-dimensional trapezoidal potential-energy barrier across the gate oxide. The oxide extends from the oxide--substrate interface at \(x=0\) to the gate--oxide interface at \(x=t_{\mathrm{ox}}\). The applied oxide voltage \(V_{\mathrm{ox}}\) causes the electron potential energy \(U(x)\) to decrease approximately linearly with position. The horizontal line denotes the electron energy \(E\), while \(\Delta_0=U(0)-E\) and \(\Delta_1=U(t_{\mathrm{ox}})-E\) are the barrier energies at the two oxide interfaces. Because \(U(x)>E\) throughout the oxide, the entire oxide constitutes a classically forbidden region.}
+    \label{fig:trapezoidal-model}
+\end{figure}
 
 At the gate--oxide interface, the barrier energy is
+
 \begin{equation}
     \Delta_1\equiv\Delta(t_{\mathrm{ox}})
     =\Delta_0-qV_{\mathrm{ox}}.
     \label{eq:gate-oxide-barrier}
 \end{equation}
-The complete trapezoidal-barrier model therefore requires
+
+For the complete trapezoidal barrier shown in Figure~\ref{fig:trapezoidal-model}, the condition
+
 \begin{equation}
-    \Delta_1>0,
+    \Delta_1>0
     \label{eq:trapezoidal-condition}
 \end{equation}
-so that \(U(x)>E\) throughout the oxide. If \(\Delta_1\leq 0\), a turning point occurs inside the oxide and the upper limit of the forbidden-region integral must be changed from \(t_{\mathrm{ox}}\) to that turning point.
+
+must be satisfied. This ensures that \(U(x)>E\) throughout the entire oxide. If \(\Delta_1\leq0\), the potential crosses the electron energy inside the oxide, producing a classical turning point. In that case, the classically forbidden region would terminate at the turning point rather than at \(x=t_{\mathrm{ox}}\).
+
 \subsection{Derivation of the WKB Transmission Probability}
 To determine the electron transmission probability \(T\) for motion along the \(x\)-direction, we follow the standard one-dimensional WKB treatment \cite[Sec.~9.2]{griffiths2018}\cite{townsend2010}, beginning with the time-independent Schr\"odinger equation.
 \begin{equation}
@@ -538,10 +557,6 @@ Despite the high value of \(R^2\), the linear model does not describe all seven 
 \section{Evaluation}
 
 \subsection{Strengths of the Model-Based Approach}
-
-The main strength of this approach is that it establishes an explicit and testable relationship between the physical tunneling mechanism and the experimental measurement. Starting from the WKB transmission probability, the model predicts the approximately linear relationship in Equation~\eqref{eq:log-gate-current-thickness}. Therefore, the logarithmic transformation of \(\left|J_G\right|\) and the expected negative slope were determined by the model before the regression was performed, rather than selected only because they produced a strong empirical fit. The trapezoidal barrier also represents the voltage-induced change in electron potential energy across the oxide, making it more physically representative than a rectangular barrier while retaining an analytically interpretable result.
-
-The experimental comparison tests this prediction over seven oxide thicknesses from \(0.6187\) to \(3.0990~\mathrm{nm}\), while the measured gate current density spans more than twelve orders of magnitude. The high coefficient of determination, \(R^2=0.9743\), shows that the leading WKB thickness dependence remains visible across this broad current-density range. In addition, repeating the digitization three times provides an estimate of the repeatability associated with extracting the published coordinates. Together, these features provide relatively strong support for the approximately exponential functional dependence and for the physical explanation that small changes in barrier width can produce large changes in transmission. However, this strength remains limited to the functional form: the analysis does not yet test the absolute current density or the theoretical numerical value of \(\beta\).
 
 \subsection{Limitations of the Constant-Parameter Assumptions}
 
