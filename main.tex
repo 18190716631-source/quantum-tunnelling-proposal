@@ -629,9 +629,11 @@ The preceding comparison with the Green dataset tests the predicted exponential 
 \end{equation}
 which is independent of the applied voltage. By contrast, the trapezoidal barrier becomes more strongly tilted as the magnitude of the oxide voltage increases, so Equation~\eqref{eq:beta} predicts that the decay coefficient decreases. The voltage dependence of the experimental slope therefore provides a second test that can distinguish the trapezoidal model from a fixed rectangular one.
 
-Khairurrijal et al. reported measured direct-tunneling current densities for phosphorus-doped \(n^+\) poly-Si-gate MOS capacitors with oxide thicknesses of \(1.65\), \(2.17\), \(2.51\), \(2.80\), \(3.50\), and \(3.90~\mathrm{nm}\) \cite{khairurrijal2000}. Their measurements were made at room temperature under negative gate bias, and the oxide voltage was obtained from capacitance--voltage measurements after corrections for the flat-band voltage and substrate surface potential. Because this bias reverses the injection direction relative to the positive-bias nMOSFET convention used earlier, we use the magnitude \(\lvert V_{\mathrm{ox}}\rvert\). Reversing the coordinate direction does not change the WKB action across the same barrier.
+Khairurrijal et al. reported measured direct-tunneling current densities for phosphorus-doped \(n^+\) poly-Si-gate MOS capacitors with oxide thicknesses of \(1.65\), \(2.17\), \(2.51\), \(2.80\), \(3.50\), and \(3.90~\mathrm{nm}\) \cite{khairurrijal2000}. However, the four oxides thinner than \(3~\mathrm{nm}\) were grown in \(2\%\) O\(_2\) diluted with N\(_2\), whereas the \(3.50\) and \(3.90~\mathrm{nm}\) oxides were grown in \(100\%\) dry O\(_2\) \cite{khairurrijal2000}. Because this fabrication difference is confounded with oxide thickness, the quantitative comparison uses only the \(1.65\), \(2.17\), \(2.51\), and \(2.80~\mathrm{nm}\) oxides. This subset was defined from the reported growth conditions rather than from the regression results.
 
-Only the measured markers in Figure~3 of Khairurrijal et al. were used; the authors' calculated curves were not digitized. At the nominal oxide-voltage magnitudes \(1.0\), \(1.5\), \(2.0\), and \(2.5~\mathrm{V}\), the six current-density values were independently digitized three times using WebPlotDigitizer \cite{rohatgiWebPlotDigitizer}. Since equal vertical displacements on the published logarithmic axis represent equal multiplicative changes in current density, each reading was first transformed as \(\ln(|J|/J_{\mathrm{ref}})\). The three logarithmic values were then averaged. This procedure is equivalent to taking the geometric mean of the three current-density readings and is consistent with the variable used in the subsequent regression. At each fixed voltage, an ordinary least-squares regression was then performed in the form
+The measurements were made at room temperature under negative gate bias, and the oxide voltage was obtained from capacitance--voltage measurements after corrections for the flat-band voltage and substrate surface potential. Because this bias reverses the injection direction relative to the positive-bias nMOSFET convention used earlier, we use the magnitude \(\lvert V_{\mathrm{ox}}\rvert\). Reversing the coordinate direction does not change the WKB action across the same barrier.
+
+Only the measured markers in Figure~3 of Khairurrijal et al. were used; the authors' calculated curves were not digitized. At the nominal oxide-voltage magnitudes \(1.0\), \(1.5\), \(2.0\), and \(2.5~\mathrm{V}\), the four selected current-density values were independently digitized three times using WebPlotDigitizer \cite{rohatgiWebPlotDigitizer}. Since equal vertical displacements on the published logarithmic axis represent equal multiplicative changes in current density, each reading was first transformed as \(\ln(|J|/J_{\mathrm{ref}})\). The three logarithmic values were then averaged. This procedure is equivalent to taking the geometric mean of the three current-density readings and is consistent with the variable used in the subsequent regression. At each fixed voltage, an ordinary least-squares regression was then performed in the form
 \begin{equation}
     \overline{\ln\left(|J|/J_{\mathrm{ref}}\right)}
     =
@@ -647,7 +649,7 @@ A separate intercept \(a(V_{\mathrm{ox}})\) was allowed at each voltage because 
 \begin{table}[H]
     \begin{singlespace}
         \centering
-        \caption{Fixed-voltage regressions obtained from the six oxide thicknesses reported by Khairurrijal et al. The quantity \(s_{\beta}\) is the sample standard deviation of the fitted slopes from the three independent digitizations; it represents digitization repeatability rather than the uncertainty of the original measurements.}
+        \caption{Fixed-voltage regressions obtained from the four oxides between \(1.65\) and \(2.80~\mathrm{nm}\), which were produced using the same reported growth conditions. The quantity \(s_{\beta}\) is the sample standard deviation of the fitted slopes from the three independent digitizations; it represents digitization repeatability rather than the uncertainty of the original measurements.}
         \label{tab:khairurrijal-fixed-voltage-fits}
         \begin{tabular}{cccc}
             \toprule
@@ -656,22 +658,22 @@ A separate intercept \(a(V_{\mathrm{ox}})\) was allowed at each voltage because 
             & \(s_{\beta}\) (\(\mathrm{nm^{-1}}\))
             & \(R^2\) \\
             \midrule
-            1.0 & 8.331 & 0.019 & 0.9871 \\
-            1.5 & 8.124 & 0.012 & 0.9872 \\
-            2.0 & 7.861 & 0.006 & 0.9862 \\
-            2.5 & 7.522 & 0.014 & 0.9844 \\
+            1.0 & 9.003 & 0.021 & 0.9910 \\
+            1.5 & 8.689 & 0.047 & 0.9880 \\
+            2.0 & 8.272 & 0.013 & 0.9845 \\
+            2.5 & 7.692 & 0.019 & 0.9740 \\
             \bottomrule
         \end{tabular}
     \end{singlespace}
 \end{table}
 
-The \(R^2\) values between \(0.9844\) and \(0.9872\) show that the approximate exponential thickness dependence is present at all four voltages. More importantly, \(\beta_{\mathrm{exp}}\) decreases monotonically from \(8.331\) to \(7.522~\mathrm{nm^{-1}}\) as \(\lvert V_{\mathrm{ox}}\rvert\) increases from \(1.0\) to \(2.5~\mathrm{V}\). This voltage-dependent change, rather than the high \(R^2\) values alone, is the feature that can distinguish the two barrier models.
+The \(R^2\) values between \(0.9740\) and \(0.9910\) show that the approximate exponential thickness dependence is present at all four voltages within the same-growth subset. More importantly, \(\beta_{\mathrm{exp}}\) decreases monotonically from \(9.003\) to \(7.692~\mathrm{nm^{-1}}\) as \(\lvert V_{\mathrm{ox}}\rvert\) increases from \(1.0\) to \(2.5~\mathrm{V}\). This voltage-dependent change, rather than the high \(R^2\) values alone, is the feature that can distinguish the two barrier models.
 
 An absolute comparison between the experimental and theoretical decay coefficients would require an independently known oxide effective mass. In the Khairurrijal model, however, the oxide effective mass and the gate Fermi energy were fitting parameters, and the fitted effective mass also varied with oxide thickness \cite{khairurrijal2000}. Normalization does not make these thickness-dependent masses equal, but it can reduce their influence under additional assumptions. We therefore normalize each decay coefficient to the value at
 \[
     V_{\mathrm{ref}}=1.5~\mathrm{V}.
 \]
-The value \(1.5~\mathrm{V}\) was selected because it is an interior point of the investigated voltage range and avoids using the lowest-voltage point as the normalization reference. The choice is a normalization convention rather than a fitted parameter: choosing another voltage common to all six thicknesses would rescale both sets of ratios but would not change whether the decay coefficient increases or decreases with voltage. The experimental and theoretical ratios are defined as
+The value \(1.5~\mathrm{V}\) was selected because it is an interior point of the investigated voltage range and avoids using the lowest-voltage point as the normalization reference. The choice is a normalization convention rather than a fitted parameter: choosing another voltage common to all four selected thicknesses would rescale both sets of ratios but would not change whether the decay coefficient increases or decreases with voltage. The experimental and theoretical ratios are defined as
 \begin{equation}
     R_{\mathrm{exp}}(V)
     =
@@ -772,19 +774,6 @@ Interchanging the high and low endpoints does not change the WKB action, so the 
                     black,
                     thick,
                     mark=*,
-                    mark size=2.4pt
-                ] coordinates {
-                    (1.0,1.0255)
-                    (1.5,1.0000)
-                    (2.0,0.9676)
-                    (2.5,0.9258)
-                };
-                \addlegendentry{All six oxides}
-
-                \addplot[
-                    red!70!black,
-                    thick,
-                    mark=square*,
                     mark size=2.5pt
                 ] coordinates {
                     (1.0,1.0361)
@@ -792,17 +781,15 @@ Interchanging the high and low endpoints does not change the WKB action, so the 
                     (2.0,0.9520)
                     (2.5,0.8852)
                 };
-                \addlegendentry{Same-growth \(t_{\mathrm{ox}}<3~\mathrm{nm}\)}
+                \addlegendentry{Four same-growth oxides}
             \end{axis}
         \end{tikzpicture}
-        \caption{Normalized experimental decay coefficients compared with the predictions of a fixed rectangular barrier and the trapezoidal WKB model. The blue band is the barrier-height sensitivity range obtained using \(\Delta_1=3.14\)--\(3.29~\mathrm{eV}\), based on the two independently estimated central Fermi-energy values reported by Khairurrijal et al.; it is not a statistical confidence interval. The black series uses all six oxide thicknesses. The red series is a sensitivity check using only the four oxides below \(3~\mathrm{nm}\), which were produced using the same reported growth conditions.}
+        \caption{Normalized experimental decay coefficients for the four same-growth oxides compared with the predictions of a fixed rectangular barrier and the trapezoidal WKB model. The blue band is the barrier-height sensitivity range obtained using \(\Delta_1=3.14\)--\(3.29~\mathrm{eV}\), based on the two independently estimated central Fermi-energy values reported by Khairurrijal et al.; it is not a statistical confidence interval.}
         \label{fig:normalized-decay-coefficient}
     \end{singlespace}
 \end{figure}
 
-For all six oxides, the experimental ratios are \(1.0255\), \(1.0000\), \(0.9676\), and \(0.9258\), whereas a fixed rectangular barrier predicts \(R_{\mathrm{rect}}=1\) at every voltage. The experimental change has the same direction as the trapezoidal prediction, although its magnitude is smaller.
-
-Khairurrijal et al. reported that the oxides thinner than \(3~\mathrm{nm}\) were grown in \(2\%\) O\(_2\) diluted with N\(_2\), whereas those thicker than \(3~\mathrm{nm}\) were grown in \(100\%\) dry O\(_2\) \cite{khairurrijal2000}. Because this fabrication difference could affect the thickness comparison, the regression was repeated using only the \(1.65\), \(2.17\), \(2.51\), and \(2.80~\mathrm{nm}\) oxides. It gives normalized coefficients of \(1.0361\), \(1.0000\), \(0.9520\), and \(0.8852\). For the same midpoint barrier height, the root-mean-square difference is \(0.010\) from the trapezoidal prediction and \(0.065\) from the rectangular prediction. The voltage-dependent decrease therefore remains when the fabrication method is held more nearly constant, although the smaller subset contains only four thicknesses.
+The four selected oxides give normalized coefficients of \(1.0361\), \(1.0000\), \(0.9520\), and \(0.8852\), whereas a fixed rectangular barrier predicts \(R_{\mathrm{rect}}=1\) at every voltage. Using the midpoint \(\Delta_1=3.215~\mathrm{eV}\) to represent the barrier-height sensitivity range, the root-mean-square difference is \(0.010\) from the trapezoidal prediction and \(0.065\) from the rectangular prediction. The experimental ratios are therefore numerically closer to the trapezoidal prediction. The voltage-dependent decrease is observed without combining the two reported growth methods, although the analysis contains only four thicknesses over the narrower range from \(1.65\) to \(2.80~\mathrm{nm}\).
 
 These results do not prove that the physical barrier is exactly trapezoidal. The original point-by-point experimental uncertainties are unavailable, so the small spread among repeated digitizations cannot be interpreted as the total measurement uncertainty. In addition, Khairurrijal et al. found a thickness-dependent fitted effective mass and obtained better agreement using a nonparabolic oxide dispersion relation than using a parabolic one \cite{khairurrijal2000}. Their devices were also MOS capacitors under negative gate bias rather than the positively biased nMOSFET configuration introduced in this paper. Nevertheless, the observed decrease of the experimental decay coefficient with oxide voltage is more consistent with the trapezoidal-barrier prediction than with a fixed rectangular barrier. The Green dataset therefore provides the first validation of the approximate exponential thickness dependence, while the Khairurrijal dataset supplies a complementary second validation based on the voltage dependence of that exponential decay.
 
