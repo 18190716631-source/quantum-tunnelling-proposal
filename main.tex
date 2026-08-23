@@ -620,11 +620,11 @@ Figure~\ref{fig:experimental-residuals} shows a broadly U-shaped pattern: the fi
 
 \subsection{Voltage-Dependent Validation of the Trapezoidal-Barrier Model}
 
-The preceding comparison with the Green dataset tests the predicted exponential dependence on oxide thickness, but this functional form is not unique to a trapezoidal barrier. A fixed rectangular barrier also gives an expression of the form \(\ln |J_G|=a-\beta t_{\mathrm{ox}}\). For a rectangular barrier with constant height \(\Delta_{\mathrm{H}}\) and constant effective mass, its logarithmic decay coefficient is
+The preceding comparison with the Green dataset tests the predicted exponential dependence on oxide thickness, but this functional form is not unique to a trapezoidal barrier. A fixed rectangular barrier also gives an expression of the form \(\ln |J_G|=a-\beta t_{\mathrm{ox}}\). For a rectangular barrier, the two endpoint barrier energies are equal, so \(\Delta_0=\Delta_1\). If this common barrier height and the effective mass remain constant, the logarithmic decay coefficient is
 \begin{equation}
     \beta_{\mathrm{rect}}
     =
-    \frac{2\sqrt{2m^*\Delta_{\mathrm{H}}}}{\hbar},
+    \frac{2\sqrt{2m^*\Delta_0}}{\hbar},
     \label{eq:rectangular-beta}
 \end{equation}
 which is independent of the applied voltage. By contrast, the trapezoidal barrier becomes more strongly tilted as the magnitude of the oxide voltage increases, so Equation~\eqref{eq:beta} predicts that the decay coefficient decreases. The voltage dependence of the experimental slope therefore provides a second test that can distinguish the trapezoidal model from a fixed rectangular one.
@@ -671,7 +671,7 @@ An absolute comparison between the experimental and theoretical decay coefficien
 \[
     V_{\mathrm{ref}}=1.5~\mathrm{V}.
 \]
-The experimental and theoretical ratios are defined as
+The value \(1.5~\mathrm{V}\) was selected because it is an interior point of the investigated voltage range and avoids using the lowest-voltage point as the normalization reference. The choice is a normalization convention rather than a fitted parameter: choosing another voltage common to all six thicknesses would rescale both sets of ratios but would not change whether the decay coefficient increases or decreases with voltage. The experimental and theoretical ratios are defined as
 \begin{equation}
     R_{\mathrm{exp}}(V)
     =
@@ -686,7 +686,11 @@ The experimental and theoretical ratios are defined as
 \end{equation}
 In the simplified theoretical expression, a single voltage-independent effective mass appears as the common factor \(\sqrt{m^*}\), so this factor cancels from \(R_{\mathrm{trap}}\). The experimental value \(\beta_{\mathrm{exp}}\), however, is an effective slope obtained by fitting devices with different oxide thicknesses and different fitted effective masses. Its normalization is therefore interpretable only if the effective mass associated with each device remains approximately independent of voltage and the mass-related thickness dependence affects all four fixed-voltage regressions in a similar way. Consequently, the normalized comparison tests the predicted voltage trend rather than independently validating the absolute WKB exponent.
 
-For the negative-bias data, reversing the coordinate direction places the higher barrier at the starting interface without changing the WKB action. The high-side barrier energy \(\Delta_{\mathrm{H}}\) therefore takes the role of \(\Delta_0\) in Equation~\eqref{eq:beta}, and the theoretical ratios can be evaluated from that existing equation using \(\lvert V_{\mathrm{ox}}\rvert\). Khairurrijal et al. used a measured conduction-band alignment of \(3.34~\mathrm{eV}\) and independently estimated central values of the gate Fermi energy of \(0.05\) and \(0.20~\mathrm{eV}\) \cite{khairurrijal2000}. Since their barrier height is \(3.34~\mathrm{eV}-E_F\), these central estimates give \(\Delta_{\mathrm{H}}=3.29\) and \(3.14~\mathrm{eV}\), respectively. These two values define the trapezoidal prediction range shown in Figure~\ref{fig:normalized-decay-coefficient}. The complete-trapezoid condition \(q\lvert V_{\mathrm{ox}}\rvert<\Delta_{\mathrm{H}}\) remains satisfied at all four selected voltages.
+Under the negative gate bias used by Khairurrijal et al., the barrier orientation is reversed relative to the positive-bias case used in the model derivation. With the original coordinate definitions retained, the gate-side barrier \(\Delta_1\) is therefore the higher endpoint, while the substrate-side barrier satisfies
+\[
+    \Delta_0=\Delta_1-q\lvert V_{\mathrm{ox}}\rvert.
+\]
+Interchanging the high and low endpoints does not change the WKB action, so the theoretical ratios can still be evaluated from Equation~\eqref{eq:beta} using the voltage magnitude. Khairurrijal et al. used a measured conduction-band alignment of \(3.34~\mathrm{eV}\) and independently estimated central values of the gate Fermi energy of \(0.05\) and \(0.20~\mathrm{eV}\) \cite{khairurrijal2000}. Since their reported gate-side barrier height is \(3.34~\mathrm{eV}-E_F\), these two estimates give \(\Delta_1=3.29\) and \(3.14~\mathrm{eV}\), respectively. The paper does not identify either central estimate as uniquely correct, so both values were used to evaluate the normalized trapezoidal prediction. The region between the resulting predictions is shown in Figure~\ref{fig:normalized-decay-coefficient} as a barrier-height sensitivity range; it is not a statistical confidence interval. The complete-trapezoid condition \(q\lvert V_{\mathrm{ox}}\rvert<\Delta_1\) remains satisfied at all four selected voltages.
 
 \begin{figure}[H]
     \begin{singlespace}
@@ -741,7 +745,7 @@ For the negative-bias data, reversing the coordinate direction places the higher
                 ] fill between[
                     of=traplower and trapupper
                 ];
-                \addlegendentry{Trapezoidal range}
+                \addlegendentry{Barrier-height sensitivity range}
 
                 \addplot[
                     blue,
@@ -791,12 +795,12 @@ For the negative-bias data, reversing the coordinate direction places the higher
                 \addlegendentry{Same-growth \(t_{\mathrm{ox}}<3~\mathrm{nm}\)}
             \end{axis}
         \end{tikzpicture}
-        \caption{Normalized experimental decay coefficients compared with the predictions of a fixed rectangular barrier and the trapezoidal WKB model. The blue range uses \(\Delta_{\mathrm{H}}=3.14\)--\(3.29~\mathrm{eV}\), obtained from the two independently estimated central Fermi-energy values reported by Khairurrijal et al. The black series uses all six oxide thicknesses. The red series is a sensitivity check using only the four oxides below \(3~\mathrm{nm}\), which were produced using the same reported growth conditions.}
+        \caption{Normalized experimental decay coefficients compared with the predictions of a fixed rectangular barrier and the trapezoidal WKB model. The blue band is the barrier-height sensitivity range obtained using \(\Delta_1=3.14\)--\(3.29~\mathrm{eV}\), based on the two independently estimated central Fermi-energy values reported by Khairurrijal et al.; it is not a statistical confidence interval. The black series uses all six oxide thicknesses. The red series is a sensitivity check using only the four oxides below \(3~\mathrm{nm}\), which were produced using the same reported growth conditions.}
         \label{fig:normalized-decay-coefficient}
     \end{singlespace}
 \end{figure}
 
-For all six oxides, the experimental ratios are \(1.0255\), \(1.0000\), \(0.9676\), and \(0.9258\), whereas a fixed rectangular barrier predicts \(R_{\mathrm{rect}}=1\) at every voltage. The experimental change has the same direction as the trapezoidal prediction, although its magnitude is smaller. Using the midpoint \(\Delta_{\mathrm{H}}=3.215~\mathrm{eV}\), the descriptive root-mean-square difference between the four experimental ratios and the trapezoidal prediction is \(0.029\), compared with \(0.042\) for the fixed rectangular prediction.
+For all six oxides, the experimental ratios are \(1.0255\), \(1.0000\), \(0.9676\), and \(0.9258\), whereas a fixed rectangular barrier predicts \(R_{\mathrm{rect}}=1\) at every voltage. The experimental change has the same direction as the trapezoidal prediction, although its magnitude is smaller. Using the midpoint \(\Delta_1=3.215~\mathrm{eV}\), the descriptive root-mean-square difference between the four experimental ratios and the trapezoidal prediction is \(0.029\), compared with \(0.042\) for the fixed rectangular prediction.
 
 Khairurrijal et al. reported that the oxides thinner than \(3~\mathrm{nm}\) were grown in \(2\%\) O\(_2\) diluted with N\(_2\), whereas those thicker than \(3~\mathrm{nm}\) were grown in \(100\%\) dry O\(_2\) \cite{khairurrijal2000}. Because this fabrication difference could affect the thickness comparison, the regression was repeated using only the \(1.65\), \(2.17\), \(2.51\), and \(2.80~\mathrm{nm}\) oxides. This subset was defined from the reported growth conditions rather than from the regression residuals. It gives normalized coefficients of \(1.0361\), \(1.0000\), \(0.9520\), and \(0.8852\). For the same midpoint barrier height, the root-mean-square difference is \(0.010\) from the trapezoidal prediction and \(0.065\) from the rectangular prediction. The voltage-dependent decrease therefore remains when the fabrication method is held more nearly constant, although the smaller subset contains only four thicknesses.
 
