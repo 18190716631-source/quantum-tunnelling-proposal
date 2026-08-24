@@ -25,6 +25,27 @@ Quantum tunneling occurs when a particle with energy \(E<V_0\) has a nonzero pro
 
 The research question is: To what extent is the experimentally measured dependence of gate leakage current density on oxide thickness consistent with the prediction of a one-dimensional rectangular potential barrier model in MOSFETs? This study will investigate how \(J_G\) changes with \(t_{\mathrm{ox}}\) at a fixed gate voltage of \(V_G=1.5~\mathrm{V}\). In the theoretical model, \(t_{\mathrm{ox}}\) will be treated as the barrier width, while the particle energy and barrier height will be held constant, and the tunneling probability \(T\) will be calculated in MATLAB. Experimental \(J_G\)-against-\(t_{\mathrm{ox}}\) data will be extracted from Green et al.'s published plot of NMOSFET measurements with transmission-electron-microscopy-measured oxide thicknesses \cite{green1999limits,green2001review}. A graph digitizer will be used to extract the data. The relationships \(\ln T\) against \(t_{\mathrm{ox}}\) and \(\ln J_G\) against \(t_{\mathrm{ox}}\) will be plotted separately, and their slopes and overall trends will be compared. Significant deviations among trends may represent limitations of the model because in a real MOSFET the electric field can tilt the oxide barrier, which may vary with oxide thickness under a fixed gate voltage \cite{green2001review}.
 
+
+For the exponentially decaying component,
+\begin{equation}
+\psi_{\mathrm{dec}}(x)
+\propto
+\exp\left[-\int_{x_1}^{x}\kappa(x')\,dx'\right].
+\end{equation}
+
+Therefore, across the barrier from $x_1$ to $x_2$,
+\begin{equation}
+\frac{A_{\mathrm{trans}}}{A_{\mathrm{inc}}}
+\sim
+\frac{
+\exp\left[-\int_{x_1}^{x_2}\kappa(x')\,dx'\right]
+}{
+\exp\left[-\int_{x_1}^{x_1}\kappa(x')\,dx'\right]
+}
+=
+\exp\left[-\int_{x_1}^{x_2}\kappa(x)\,dx\right]
+\equiv e^{-K},
+\end{equation}
 \newpage
 \IfFileExists{IEEEtran.bst}{\bibliographystyle{IEEEtran}}{\bibliographystyle{unsrt}}
 \bibliography{references}
