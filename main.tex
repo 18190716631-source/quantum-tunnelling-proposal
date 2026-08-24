@@ -795,15 +795,11 @@ These results do not prove that the physical barrier is exactly trapezoidal. The
 
 \section{Evaluation}
 
-\subsection{Strengths of the Model-Based Approach}
-
 \subsection{Limitations of the Constant-Parameter Assumptions}
 
-\subsection{Physical Limitations of the WKB Barrier Model}
+The linear relation in Equation~\eqref{eq:log-gate-current-thickness} assumes that the oxide effective mass \(m^*\), the barrier energies, and the non-exponential current prefactor remain approximately constant across devices with different oxide thicknesses at a fixed voltage. Under these assumptions, the effect of thickness can be represented by a single theoretical decay coefficient \(\beta\). However, Khairurrijal et al. treated the oxide effective mass and gate Fermi energy as fitting parameters, and their fitted effective mass varied with oxide thickness \cite{khairurrijal2000}. Since the gate Fermi energy also enters the barrier height, the relevant barrier energy was not independently fixed for every thickness. In addition, their nonparabolic oxide-dispersion model reproduced the measured current more accurately than the parabolic approximation used in the simplified WKB expression.
 
-\subsection{Limitations of the Experimental Dataset}
-
-\subsection{Future Quantitative Validation}
+Consequently, the experimentally fitted \(\beta_{\mathrm{exp}}\) should be interpreted as an effective slope across the selected thicknesses, rather than as a direct measurement of the theoretical \(\beta\) in Equation~\eqref{eq:beta} for one constant \(m^*\). Normalization removes a common factor of \(\sqrt{m^*}\) from the simplified theoretical ratio, but it does not make the thickness-dependent fitted masses equal. The normalized comparison can therefore test the predicted voltage dependence only under the additional assumption that the effective mass associated with each device does not change substantially with voltage and that its thickness-dependent influence affects all four fixed-voltage regressions in a similar way. A stronger quantitative validation would require independently constrained barrier heights and effective masses for the same set of devices, together with a current model that includes the non-exponential prefactor and nonparabolic oxide dispersion.
 
 \section{Conclusion}
 
