@@ -30,7 +30,7 @@
 \begin{abstract}
 Gate leakage increases rapidly as the oxide barrier in a metal--oxide--semiconductor structure becomes thinner. This paper tests whether a one-dimensional trapezoidal barrier treated with the Wentzel--Kramers--Brillouin approximation captures the leading thickness and voltage dependence of measured gate-current density. The model predicts an approximately linear decrease of \(\ln|J_G|\) with oxide thickness and a decrease of the logarithmic decay coefficient as the oxide-voltage magnitude increases. Published data were independently digitized three times and analyzed by ordinary least-squares regression. For the Green dataset, the fitted decay coefficient was \(11.684~\mathrm{nm^{-1}}\) with \(R^2=0.9743\), corresponding to a tenfold decrease in current density for a thickness increase of \(0.197~\mathrm{nm}\). The residuals nevertheless indicate possible systematic curvature beyond the constant-slope approximation. A second analysis used four same-growth oxides reported by Khairurrijal et al. The fitted coefficient decreased from \(9.003\) to \(7.692~\mathrm{nm^{-1}}\) as \(\lvert V_{\mathrm{ox}}\rvert\) increased from \(1.0\) to \(2.5~\mathrm{V}\), and the normalized experimental ratios were numerically closer to the trapezoidal prediction than to a fixed rectangular-barrier prediction. The model therefore describes the leading experimental trends, but the comparison does not validate the absolute WKB exponent because the effective mass, barrier energies, and non-exponential current factors are not independently fixed across the devices.
 \end{abstract}
-
+\newpage
 \section{Introduction}
 Metal--oxide--semiconductor field-effect transistors (MOSFETs) are widely used as electronic switches because the voltage applied to the gate controls the conductivity of the channel. When a positive gate voltage greater than threshold voltage is applied to an n-channel MOSFET, it establishes an electric field across the oxide, attracting electrons toward the oxide--semiconductor interface and forming a conductive channel. The oxide electrically separates the gate from the semiconductor and ideally prevents direct charge flow, while still allowing the gate to control the channel electrostatically.
 
@@ -56,7 +56,7 @@ The enhancement-mode n-channel metal--oxide--semiconductor field-effect transist
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.90\textwidth]{figures/mosfet-reference.png}
+    \includegraphics[width=0.90\textwidth]{mosfet-reference.jpg}
     \caption{Four-stage operation of an enhancement-mode nMOSFET: (a) off state at \(V_{GS}=V_{DS}=0\); (b) gate-induced depletion at \(0<V_{GS}<V_T\); (c) formation of an inversion channel at \(V_{GS}>V_T\) and \(V_{DS}=0\); and (d) source--drain conduction and possible gate-oxide tunneling when \(V_{GS}>V_T\) and \(V_{DS}>0\).}
     \label{fig:nmos-operation}
 \end{figure}
